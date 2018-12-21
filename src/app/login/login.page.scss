@@ -1,0 +1,16 @@
+
+ion-content,ion-item,ion-list,ion-item-background,ion-background-color,list-md {
+    --background: #faf9f8;}
+.list-md {
+        margin: 0;
+        padding: 8px 0;
+        background: var(--ion-item-background,var(--ion-background-color,#faf9f8));
+    }
+
+.list-ios {
+        margin: -1px 0 32px;
+        background: var(--ion-item-background,var(--ion-background-color,#faf9f8));
+    }
+#img-logo{
+    padding-top: 3em
+}

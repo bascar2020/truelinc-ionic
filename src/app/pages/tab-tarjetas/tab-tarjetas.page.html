@@ -1,11 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>tab_tarjetas</ion-title>
+    <ion-title text-center>Mis Tarjetas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-text color="secondary">
-    <h1>H1: The quick brown fox jumps over the lazy dog</h1>
-  </ion-text>
+    
+    <ion-list no-padding>
+        <ion-card >
+            
+              <ion-item href="#" class="activated">
+                  <ion-col size="4">
+                      <ion-thumbnail id="img-user">
+                          <img _ngcontent-c2="" src="assets/img/juan.jpg" style="border-radius: 50%;">
+                      </ion-thumbnail>
+                    </ion-col>
+                    <ion-col size="8">
+                        <ion-list>
+                            <ion-text><h4>empresa</h4></ion-text>
+                            <ion-text><h5>nombre</h5></ion-text>
+                            <ion-text><h5>cargo</h5></ion-text>
+                          </ion-list>
+                      </ion-col>
+                </ion-item>
+        </ion-card>
+        
+
+  </ion-list>  
 </ion-content>
