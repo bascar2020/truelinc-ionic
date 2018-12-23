@@ -1,9 +1,102 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>tab_edit</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar>
+      <ion-title text-center><img src="assets/img/logoLargo.png" style="height: 44px;"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
 
-<ion-content padding>
+      <ion-item>
+          <ion-col size="6" style="text-align: -webkit-center;">
+              <ion-thumbnail id="img-user">
+  
+                      <button  (click)="click()" block style="background-color:#fff">
+                          <img _ngcontent-c2="" src="assets/img/juan.jpg" style="border-radius: 50%;">
+                     </button>
+                  </ion-thumbnail>
+              <ion-label>Cambia tu foto</ion-label>
+            </ion-col>
+            <ion-col size="6" style="text-align: -webkit-center;">
+                <ion-thumbnail id="img-user">
+  
+                    <button  (click)="click()" block style="background-color:#fff">
+                        <img _ngcontent-c2="" src="assets/img/Indibyte.png" style="border-radius: 50%;">
+                   </button>
+                </ion-thumbnail>
+                <ion-label>Cambia tu logo</ion-label>
+              </ion-col>
+        </ion-item>
 
-</ion-content>
+        <ion-item id="datos">
+            <ion-col size="12">
+                <ion-label>Empresa</ion-label>
+                <ion-item>
+                    <ion-textarea placeholder="Escribe tu empresa"></ion-textarea>
+                  </ion-item>
+              </ion-col>
+          </ion-item>
+
+          <ion-item id="datos">
+              <ion-col size="12">
+                  <ion-label>Nombre</ion-label>
+                  <ion-item>
+                      <ion-textarea placeholder="Escribe tu nombre aqui"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+            </ion-item>
+
+            <ion-item id="datos">
+                <ion-col size="12">
+                    <ion-label>Cargo</ion-label>
+                    <ion-item>
+                        <ion-textarea placeholder="Escribe tu Cargo"></ion-textarea>
+                      </ion-item>
+                  </ion-col>
+              </ion-item>
+
+              <ion-item id="datos">
+                  <ion-col size="12">
+                      <ion-label>Perfil o Informacion adicional</ion-label>
+                      <ion-item>
+                          <ion-textarea placeholder="Escribe tu descripcion"></ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                </ion-item>
+
+        <ion-item id="datos">
+            <ion-col size="3">
+                <ion-thumbnail id="img-icon">
+                    <img _ngcontent-c2="" src="assets/img/phone.png">
+                </ion-thumbnail>
+              </ion-col>
+              <ion-item>
+                  <ion-textarea placeholder="Escribe tu telefono"></ion-textarea>
+                </ion-item>
+          </ion-item>
+          <ion-item id="datos" >
+              <ion-col size="3">
+                  <ion-thumbnail id="img-icon">
+                      <img _ngcontent-c2="" src="assets/img/home.png">
+                  </ion-thumbnail>
+                </ion-col>
+                <ion-item>
+                    <ion-textarea placeholder="Escribe tu direccion"></ion-textarea>
+                  </ion-item>
+            </ion-item>
+            <ion-item id="datos">
+                <ion-col size="3">
+                    <ion-thumbnail id="img-icon">
+                        <img _ngcontent-c2="" src="assets/img/mail.png">
+                    </ion-thumbnail>
+                  </ion-col>
+                  <ion-item>
+                      <ion-textarea placeholder="Escribe tu correo"></ion-textarea>
+                    </ion-item>
+              </ion-item>
+
+            <ion-button expand="full">GUARDAR CAMBIOS</ion-button>
+
+  </ion-content>
+
+  
+  
