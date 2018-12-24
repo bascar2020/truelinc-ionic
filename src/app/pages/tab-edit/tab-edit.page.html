@@ -10,22 +10,22 @@
           <ion-col size="6" style="text-align: -webkit-center;">
               <ion-thumbnail id="img-user">
   
-                      <button  (click)="click()" block style="background-color:#fff">
-                          <img _ngcontent-c2="" src="assets/img/juan.jpg" style="border-radius: 50%;">
-                     </button>
+                  <ion-button>
+                      <ion-img src="assets/img/juan.jpg" ></ion-img>
+                    </ion-button>
                   </ion-thumbnail>
               <ion-label>Cambia tu foto</ion-label>
             </ion-col>
-            <ion-col size="6" style="text-align: -webkit-center;">
+            <ion-col size="6" style="text-align: -webkit-center">
                 <ion-thumbnail id="img-user">
-  
-                    <button  (click)="click()" block style="background-color:#fff">
-                        <img _ngcontent-c2="" src="assets/img/Indibyte.png" style="border-radius: 50%;">
-                   </button>
-                </ion-thumbnail>
+                    <ion-button>
+                      <ion-img src="assets/img/Indibyte.png" ></ion-img>
+                    </ion-button>
+                  </ion-thumbnail>
                 <ion-label>Cambia tu logo</ion-label>
               </ion-col>
         </ion-item>
+
 
         <ion-item id="datos">
             <ion-col size="12">
@@ -66,7 +66,7 @@
         <ion-item id="datos">
             <ion-col size="3">
                 <ion-thumbnail id="img-icon">
-                    <img _ngcontent-c2="" src="assets/img/phone.png">
+                    <ion-img src="assets/img/phone.png"></ion-img>
                 </ion-thumbnail>
               </ion-col>
               <ion-item>
@@ -76,7 +76,7 @@
           <ion-item id="datos" >
               <ion-col size="3">
                   <ion-thumbnail id="img-icon">
-                      <img _ngcontent-c2="" src="assets/img/home.png">
+                      <ion-img src="assets/img/home.png"></ion-img>
                   </ion-thumbnail>
                 </ion-col>
                 <ion-item>
@@ -86,15 +86,59 @@
             <ion-item id="datos">
                 <ion-col size="3">
                     <ion-thumbnail id="img-icon">
-                        <img _ngcontent-c2="" src="assets/img/mail.png">
+                        <ion-img src="assets/img/mail.png"></ion-img>
                     </ion-thumbnail>
                   </ion-col>
                   <ion-item>
                       <ion-textarea placeholder="Escribe tu correo"></ion-textarea>
                     </ion-item>
+
               </ion-item>
 
-            <ion-button expand="full">GUARDAR CAMBIOS</ion-button>
+              <ion-item id="datos">
+                    <ion-col size="3">
+                        <ion-thumbnail id="img-icon">
+                            <ion-img src="assets/img/face.png"></ion-img>
+                        </ion-thumbnail>
+                      </ion-col>
+                      <ion-item>
+                          <ion-textarea placeholder="Escribe tu facebook"></ion-textarea>
+                        </ion-item>
+    
+                  </ion-item>
+
+                  <ion-item id="datos">
+                        <ion-col size="3">
+                            <ion-thumbnail id="img-icon">
+                                <ion-img src="assets/img/insta.png"></ion-img>
+                            </ion-thumbnail>
+                          </ion-col>
+                          <ion-item>
+                              <ion-textarea placeholder="Escribe tu instagram"></ion-textarea>
+                            </ion-item>
+        
+                      </ion-item>
+
+                      <ion-item id="datos">
+                            <ion-col size="3">
+                                <ion-thumbnail id="img-icon">
+                                    <ion-img src="assets/img/web.png"></ion-img>
+                                </ion-thumbnail>
+                              </ion-col>
+                              <ion-item>
+                                  <ion-textarea placeholder="Escribe tu pagina web"></ion-textarea>
+                                </ion-item>
+            
+                          </ion-item>
+
+              <ion-item>
+                  <h6>Deseas que tu tarjeta TRUELINK sea publica</h6>
+                  <ion-toggle [(ngModel)]="privada"></ion-toggle>
+                </ion-item>
+
+              <ion-item >
+            <ion-button class="btn-item" expand="full" >GUARDAR CAMBIOS</ion-button>
+          </ion-item>
 
   </ion-content>
 

@@ -1,6 +1,6 @@
 <ion-header>
         <ion-toolbar>
-          <ion-title text-center><img src="assets/img/logoLargo.png" style="height: 44px;"></ion-title>
+          <ion-title text-center><ion-img src="assets/img/logoLargo.png" style="height: 44px;"></ion-img></ion-title>
         </ion-toolbar>
       </ion-header>
       
@@ -9,15 +9,15 @@
           <ion-item>
               <ion-col size="6" style="text-align: -webkit-center;">
                   <ion-thumbnail id="img-user">
-                      <img _ngcontent-c2="" src="assets/img/juan.jpg" style="border-radius: 50%;">
+                      <ion-img   src="assets/img/juan.jpg" ></ion-img>
                   </ion-thumbnail>
-                  <ion-label>Label</ion-label>
+                  <ion-label>juan sebastian</ion-label>
                 </ion-col>
                 <ion-col size="6" style="text-align: -webkit-center;">
                     <ion-thumbnail id="img-user">
-                        <img _ngcontent-c2="" src="assets/img/Indibyte.png" style="border-radius: 50%;">
+                        <ion-img  src="assets/img/Indibyte.png"></ion-img>
                     </ion-thumbnail>
-                    <ion-label>Label</ion-label>
+                    <ion-label>Indibyte</ion-label>
                   </ion-col>
             </ion-item>
     
@@ -28,26 +28,26 @@
               </ion-item>
               <ion-item id="list-date" style="text-align: -webkit-ri;">
                     <ion-thumbnail id="img-icon">
-                            <button  (click)="click()" block style="background-color:#fff">
-                                <img src="assets/img/face.png" text-center>
-                           </button>
+                            <ion-button class="btn-red"> 
+                                <ion-img class="img-red" src="assets/img/face.png" text-center></ion-img>
+                           </ion-button>
                         </ion-thumbnail>
                         <ion-thumbnail id="img-icon">
-                                <button  (click)="click()" block style="background-color:#fff">
-                                    <img src="assets/img/insta.png" text-center>
-                               </button>
+                                <ion-button class="btn-red"> 
+                                    <ion-img src="assets/img/insta.png" text-center></ion-img>
+                               </ion-button>
                             </ion-thumbnail>
                             <ion-thumbnail id="img-icon">
-                                    <button  (click)="click()" block style="background-color:#fff">
-                                        <img src="assets/img/web.png" text-center>
-                                   </button>
+                                    <ion-button class="btn-red"> 
+                                        <ion-img src="assets/img/web.png" text-center></ion-img>
+                                   </ion-button>
                                 </ion-thumbnail>
                   </ion-item>
     
             <ion-item id="datos">
                 <ion-col size="3">
                     <ion-thumbnail id="img-icon">
-                        <img _ngcontent-c2="" src="assets/img/phone.png">
+                        <ion-img src="assets/img/phone.png"></ion-img>
                     </ion-thumbnail>
                   </ion-col>
                   <ion-label>Telefono</ion-label>
@@ -55,20 +55,20 @@
               <ion-item id="datos" >
                   <ion-col size="3">
                       <ion-thumbnail id="img-icon">
-                          <img _ngcontent-c2="" src="assets/img/home.png">
+                          <ion-img src="assets/img/home.png"></ion-img>
                       </ion-thumbnail>
                     </ion-col>
                     <ion-label>Direccion</ion-label>
                     <ion-thumbnail id="img-icon">
-                        <button  (click)="click()" block style="background-color:#fff">
-                            <img src="assets/img/maps.png">
-                       </button>
-                    </ion-thumbnail>
+                            <ion-button class="btn-red"> 
+                                <ion-img src="assets/img/maps.png" text-center></ion-img>
+                           </ion-button>
+                        </ion-thumbnail>
                 </ion-item>
                 <ion-item id="datos">
                     <ion-col size="3">
                         <ion-thumbnail id="img-icon">
-                            <img _ngcontent-c2="" src="assets/img/mail.png">
+                            <ion-img  src="assets/img/mail.png"></ion-img>
                         </ion-thumbnail>
                       </ion-col>
                       <ion-label>Correo</ion-label>
@@ -77,15 +77,15 @@
     
                         <ion-row>
                                 <ion-col size="12" size-sm>
-                                        <h3 text-center padding-top style="color:#a8a8a8;">CODIGO PARA COMPARTIR CONTACTO</h3>
+                                        <h3 text-center padding-top >CODIGO PARA COMPARTIR CONTACTO</h3>
                                 </ion-col>
                                 <ion-col size="12" size-sm style="text-align: -webkit-center;">
                                         <ion-thumbnail id="img-qr">
-                                                <img _ngcontent-c2="" src="assets/img/no-qr.png">
+                                                <ion-img src="assets/img/no-qr.png"></ion-img>
                                         </ion-thumbnail>
                                 </ion-col>
                                 <ion-col size="12" size-sm>
-                                        <h3 text-center padding-top style="color:#a8a8a8;">ESCANEA USANDO TRUELINC</h3>
+                                        <h3 text-center padding-top >ESCANEA USANDO TRUELINC</h3>
                                 </ion-col>
                     
                         </ion-row>

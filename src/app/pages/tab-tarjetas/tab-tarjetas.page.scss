@@ -7,14 +7,19 @@ ion-card{
     padding-top: 22px;
 
 }
+ion-list{
+
+    margin-left: 6px;
+}
 #img-user{
 
     width: 80px;
     height: 80px;
+    --border-radius: 50%;
 }
 .list-md {
     margin: -21px;
-    background: var(--ion-item-background,var(--ion-background-color,#1C00ff00))
+
 }
 h4{
     font-size: 16px;

@@ -3,15 +3,37 @@ ion-content{
 }
 
 ion-button{
-    margin-top: 6px;
-    background-color: red;
+
+        font-family: inherit;
+        font-size: inherit;
+        font-style: inherit;
+        letter-spacing: inherit;
+        color: #fff;
+        --background: rgb(1, 174, 197);
+        overflow: var(--overflow);
+
+
+        
+
 
 }
+
+.btn-red{
+    --background: #fff;
+    width: 44px;
+    height: 44px;
+}
+.img-red{
+    width: 100%;
+    height: 100%;
+}
+
 
 #img-user{
 
     width: 80px;
     height: 80px;
+    --border-radius: 50%;
 }
 
 #img-icon{
@@ -36,10 +58,11 @@ ion-button{
     height: 144px;
 }
 
-.list-md {
-    margin: -21px;
-    background: var(--ion-item-background,var(--ion-background-color,#1C00ff00))
+
+h3{
+    color: #a8a8a8;
 }
+
 h4{
     font-size: 16px;
     margin-top: 3px;

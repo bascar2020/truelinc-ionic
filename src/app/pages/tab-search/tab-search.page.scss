@@ -15,10 +15,16 @@ ion-card{
 
     width: 80px;
     height: 80px;
+    --border-radius: 50%;
 }
 .list-md {
     margin: -21px;
-    background: var(--ion-item-background,var(--ion-background-color,#1C00ff00))
+}
+
+
+h3{
+    color: #a8a8a8;
+    margin-top: -40px;
 }
 h4{
     font-size: 16px;
