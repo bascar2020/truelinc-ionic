@@ -1,4 +1,4 @@
-<ion-list no-padding *ngIf="items.length > 0">
+<ion-list no-padding *ngIf="items">
   <ion-card *ngFor="let item of items" >
         <ion-item (click)="go(item.id)" routerDirection="forward">
             <ion-col size="4">

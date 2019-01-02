@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Tarjeta } from '../models/tarjeta.model';
 import { TarjetaService } from '../services/tarjeta.service';
 import { ActivatedRoute } from '@angular/router';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-mycard',
@@ -14,6 +15,7 @@ export class MycardPage implements OnInit {
   constructor(
     private tarjetaService: TarjetaService,
     private activeRoute: ActivatedRoute,
+    private loadingService: LoaderService,
   ) { }
 
   ngOnInit() {
@@ -21,6 +23,7 @@ export class MycardPage implements OnInit {
   }
 
   private getTarjeta() {
+    this.loadingService.presentLoading();
     const id = this.activeRoute.snapshot.paramMap.get('id');
     this.tarjetaService.getTargetasById(id).subscribe((t) => {
         t = t[0];
@@ -48,6 +51,7 @@ export class MycardPage implements OnInit {
 
       };
       console.log(this.miTarjeta);
+      this.loadingService.dissminsLoading();
      });
   }
 }

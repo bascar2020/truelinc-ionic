@@ -5,11 +5,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { TabsRoutingModule } from './tabs.router.module';
 import { TabsPage } from './tabs.page';
-import { TabTarjetasPageModule } from '../tab-tarjetas/tab-tarjetas.module';
-import { TabCameraPageModule } from '../tab-camera/tab-camera.module';
-import { TabSearchPageModule } from '../tab-search/tab-search.module';
-import { TabEditPageModule } from '../tab-edit/tab-edit.module';
-
 
 @NgModule({
   imports: [

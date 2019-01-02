@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Tarjeta, TarjetaDeck } from '../../models/tarjeta.model';
+import { TarjetaDeck } from '../../models/tarjeta.model';
 import { TarjetaService } from '../../services/tarjeta.service';
-import { Router } from '@angular/router';
+import { LoaderService } from '../../services/loader.service';
+
 
 @Component({
   selector: 'app-tab-tarjetas',
@@ -13,6 +14,7 @@ export class TabTarjetasPage implements OnInit {
 
   constructor(
     private tarjetaService: TarjetaService,
+    private loadingService: LoaderService,
   ) { }
 
   ngOnInit() {
@@ -20,7 +22,11 @@ export class TabTarjetasPage implements OnInit {
   }
 
   private getTarjetas() {
-    this.tarjetaService.getTarjetasCurrentUser().subscribe(tarjetas => this.misTarjetas = tarjetas);
+    this.loadingService.presentLoading();
+    this.tarjetaService.getTarjetasCurrentUser().subscribe((tarjetas) => {
+      this.misTarjetas = tarjetas;
+      this.loadingService.dissminsLoading();
+    });
   }
 
   generateUrl(tarjetaCode: string): string {
