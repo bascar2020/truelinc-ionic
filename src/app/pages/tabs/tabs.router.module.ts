@@ -14,6 +14,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../tab-tarjetas/tab-tarjetas.module#TabTarjetasPageModule'
+          },
+          {
+            path: ':id',
+            loadChildren: '../../mycard/mycard.module#MycardPageModule'
           }
         ]
       },

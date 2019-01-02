@@ -21,18 +21,18 @@
             <ion-label>Nacional</ion-label>
           </ion-segment-button>
         </ion-segment>
-      <ion-searchbar showCancelButton cancelButtonText="Custom Cancel"></ion-searchbar>
+      <ion-searchbar showCancelButton (ionInput)="searchTarjetas($event)"></ion-searchbar>
    
 
       
     <ion-list no-padding>
     <ion-card >
         
-          <ion-item href="#" class="activated">
+          <ion-item href="#">
               <ion-col size="4">
                   <ion-thumbnail id="img-user">
                       
-                      <ion-img src="assets/img/juan.jpg" ></ion-img>
+                      <ion-img src="assets/img/noImage.jpg" ></ion-img>
                   </ion-thumbnail>
                 </ion-col>
                 <ion-col size="8">

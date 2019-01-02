@@ -5,26 +5,8 @@
 </ion-header>
 
 <ion-content padding>
-    
-    <ion-list no-padding>
-        <ion-card >
-            
-              <ion-item href="#" class="activated">
-                  <ion-col size="4">
-                      <ion-thumbnail id="img-user">
-                          <ion-img src="assets/img/juan.jpg"></ion-img>
-                      </ion-thumbnail>
-                    </ion-col>
-                    <ion-col size="8">
-                        <ion-list>
-                            <ion-text><h4>empresa</h4></ion-text>
-                            <ion-text><h5>nombre</h5></ion-text>
-                            <ion-text><h5>cargo</h5></ion-text>
-                          </ion-list>
-                      </ion-col>
-                </ion-item>
-        </ion-card>
-        
-
-  </ion-list>  
+    <app-tarjetas-list
+        [items]="misTarjetas"
+        [navigateTo]="generateUrl">
+    </app-tarjetas-list>
 </ion-content>

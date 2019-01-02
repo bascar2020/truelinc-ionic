@@ -12,4 +12,8 @@ export class TabSearchPage implements OnInit {
   ngOnInit() {
   }
 
+  getItems(ev: any) {
+    const val = ev.target.value;
+  }
+
 }
