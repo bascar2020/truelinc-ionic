@@ -1,15 +1,14 @@
 <ion-header>
     <ion-toolbar>
-      <ion-title text-center>Buscador</ion-title>
-    </ion-toolbar>
+        <ion-title text-center><img src="assets/img/logoLargo.png" style="height: 44px;"></ion-title>
+      </ion-toolbar>
   </ion-header>
   
   <ion-content padding>
       <div padding>
           <h3 text-center padding-top>Escoje tu rango de busqueda</h3>
-
       </div>
-    
+
       <ion-segment>
           <ion-segment-button checked>
             <ion-label>Cerca</ion-label>
@@ -21,7 +20,9 @@
             <ion-label>Nacional</ion-label>
           </ion-segment-button>
         </ion-segment>
-      <ion-searchbar showCancelButton (ionInput)="searchTarjetas($event)"></ion-searchbar>
+
+    
+      <ion-searchbar  animated (ionInput)="searchTarjetas($event)"></ion-searchbar>
    
 
       

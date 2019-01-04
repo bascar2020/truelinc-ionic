@@ -11,7 +11,7 @@
               <ion-thumbnail id="img-user">
   
                   <ion-button>
-                      <ion-img src="assets/img/juan.jpg" ></ion-img>
+                      <ion-img src="assets/img/noImage.jpg" ></ion-img>
                     </ion-button>
                   </ion-thumbnail>
               <ion-label>Cambia tu foto</ion-label>
@@ -19,7 +19,7 @@
             <ion-col size="6" style="text-align: -webkit-center">
                 <ion-thumbnail id="img-user">
                     <ion-button>
-                      <ion-img src="assets/img/Indibyte.png" ></ion-img>
+                      <ion-img src="assets/img/noImage.jpg" ></ion-img>
                     </ion-button>
                   </ion-thumbnail>
                 <ion-label>Cambia tu logo</ion-label>
@@ -27,34 +27,34 @@
         </ion-item>
 
 
-        <ion-item id="datos">
-            <ion-col size="12">
-                <ion-label>Empresa</ion-label>
-                <ion-item>
-                    <ion-textarea placeholder="Escribe tu empresa"></ion-textarea>
-                  </ion-item>
-              </ion-col>
-          </ion-item>
-
-          <ion-item id="datos">
-              <ion-col size="12">
-                  <ion-label>Nombre</ion-label>
-                  <ion-item>
-                      <ion-textarea placeholder="Escribe tu nombre aqui"></ion-textarea>
-                    </ion-item>
-                </ion-col>
-            </ion-item>
-
-            <ion-item id="datos">
+        <ion-item>
                 <ion-col size="12">
-                    <ion-label>Cargo</ion-label>
-                    <ion-item>
-                        <ion-textarea placeholder="Escribe tu Cargo"></ion-textarea>
+                      <ion-item>
+                              <ion-label position="floating">Empresa</ion-label>
+                              <ion-input type="text"></ion-input>
                       </ion-item>
                   </ion-col>
               </ion-item>
 
-              <ion-item id="datos">
+          <ion-item >
+              <ion-col size="12">
+                    <ion-item>
+                            <ion-label position="floating">Nombre</ion-label>
+                            <ion-input type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-item>
+
+            <ion-item >
+                    <ion-col size="12">
+                          <ion-item>
+                                  <ion-label position="floating">Cargo</ion-label>
+                                  <ion-input type="text"></ion-input>
+                          </ion-item>
+                      </ion-col>
+                  </ion-item>
+
+              <ion-item>
                   <ion-col size="12">
                       <ion-label>Perfil o Informacion adicional</ion-label>
                       <ion-item>
@@ -63,79 +63,85 @@
                     </ion-col>
                 </ion-item>
 
-        <ion-item id="datos">
+        <ion-item >
             <ion-col size="3">
                 <ion-thumbnail id="img-icon">
                     <ion-img src="assets/img/phone.png"></ion-img>
                 </ion-thumbnail>
               </ion-col>
-              <ion-item>
-                  <ion-textarea placeholder="Escribe tu telefono"></ion-textarea>
-                </ion-item>
+                          <ion-item>
+                                  <ion-label position="floating">Telefono</ion-label>
+                                  <ion-input type="number"></ion-input>
+                          </ion-item>
           </ion-item>
-          <ion-item id="datos" >
+          <ion-item >
               <ion-col size="3">
                   <ion-thumbnail id="img-icon">
                       <ion-img src="assets/img/home.png"></ion-img>
                   </ion-thumbnail>
                 </ion-col>
                 <ion-item>
-                    <ion-textarea placeholder="Escribe tu direccion"></ion-textarea>
-                  </ion-item>
+                        <ion-label position="floating">Direccion</ion-label>
+                        <ion-input type="text"></ion-input>
+                </ion-item>
             </ion-item>
-            <ion-item id="datos">
+            <ion-item >
                 <ion-col size="3">
                     <ion-thumbnail id="img-icon">
                         <ion-img src="assets/img/mail.png"></ion-img>
                     </ion-thumbnail>
                   </ion-col>
                   <ion-item>
-                      <ion-textarea placeholder="Escribe tu correo"></ion-textarea>
-                    </ion-item>
+                        <ion-label position="floating">Correo</ion-label>
+                        <ion-input type="email"></ion-input>
+                </ion-item>
 
               </ion-item>
 
-              <ion-item id="datos">
+              <ion-item >
                     <ion-col size="3">
                         <ion-thumbnail id="img-icon">
                             <ion-img src="assets/img/face.png"></ion-img>
                         </ion-thumbnail>
                       </ion-col>
                       <ion-item>
-                          <ion-textarea placeholder="Escribe tu facebook"></ion-textarea>
-                        </ion-item>
+                            <ion-label position="floating">Facebook</ion-label>
+                            <ion-input type="text"></ion-input>
+                    </ion-item>
     
                   </ion-item>
 
-                  <ion-item id="datos">
+                  <ion-item>
                         <ion-col size="3">
                             <ion-thumbnail id="img-icon">
                                 <ion-img src="assets/img/insta.png"></ion-img>
                             </ion-thumbnail>
                           </ion-col>
                           <ion-item>
-                              <ion-textarea placeholder="Escribe tu instagram"></ion-textarea>
-                            </ion-item>
+                                <ion-label position="floating">Instagram</ion-label>
+                                <ion-input type="text"></ion-input>
+                        </ion-item>
         
                       </ion-item>
 
-                      <ion-item id="datos">
+                      <ion-item >
                             <ion-col size="3">
                                 <ion-thumbnail id="img-icon">
                                     <ion-img src="assets/img/web.png"></ion-img>
                                 </ion-thumbnail>
                               </ion-col>
                               <ion-item>
-                                  <ion-textarea placeholder="Escribe tu pagina web"></ion-textarea>
-                                </ion-item>
+                                    <ion-label position="floating">Pagina Web</ion-label>
+                                    <ion-input type="text"></ion-input>
+                            </ion-item>
             
                           </ion-item>
 
-              <ion-item>
+              <ion-item text-center>
                   <h6>Deseas que tu tarjeta TRUELINK sea publica</h6>
                   <ion-toggle [(ngModel)]="privada"></ion-toggle>
                 </ion-item>
-
+                
               <ion-item >
             <ion-button class="btn-item" expand="full" >GUARDAR CAMBIOS</ion-button>
           </ion-item>
@@ -143,7 +149,7 @@
           
           
             <div margin-top text-center>
-              <ion-button  color="danger" (click)="logOut()" size="large" expand="full" >Log out</ion-button>
+              <ion-button class="btn-item" color="danger" (click)="logOut()" size="large" expand="full" >Log out</ion-button>
             </div>
   </ion-content>
 
