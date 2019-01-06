@@ -1,7 +1,4 @@
-ion-header ion-toolbar:first-child {
-    padding-top: var(--ion-safe-area-top,0);
-    height: 44px;
-}
+
 ion-content{
     --background: #faf9f8;
 }
@@ -11,6 +8,9 @@ ion-card{
     padding-top: 22px;
 
 }
+
+
+
 #img-user{
 
     width: 80px;
@@ -30,13 +30,17 @@ h4{
     font-size: 16px;
     margin-top: 3px;
     margin-bottom: 3px;
-
+    text-transform: uppercase;
+    color: #5d5d5d;
 }
+
 
 h5{
     font-size: 14px;
     margin-top: 3px;
     margin-bottom: 3px;
+    text-transform: capitalize;
+    color: #5d5d5d;
 
 }
 
@@ -44,6 +48,8 @@ h6{
     font-size: 12px;
     margin-top: 3px;
     margin-bottom: 3px;
+    text-transform: capitalize;
+    color: #5d5d5d;
 
 }
 
