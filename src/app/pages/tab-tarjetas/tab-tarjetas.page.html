@@ -5,6 +5,10 @@
 </ion-header>
 
 <ion-content padding>
+  <app-search (searchCompleted)="filteredTarjetas($event)"
+  [items]="copyOfMisTarjetas"
+  [filteredProperty]="'empresa'">
+  </app-search>
     <app-tarjetas-list
         [items]="misTarjetas"
         [navigateTo]="generateUrl">
