@@ -29,16 +29,6 @@ export class TabTarjetasPage implements OnInit {
     this.tarjetaService.getTarjetasCurrentUser().subscribe((tarjetas) => {
       console.log(tarjetas);
       this.misTarjetas = tarjetas.map((t) => {
-<<<<<<< HEAD
-      return {
-      id: t.id,
-      nombre: t.get('Nombre'),
-      empresa: t.get('Empresa'),
-      cargo: t.get('Cargo'),
-      logo: (t.get('LogoEmpresa') === undefined ? 'assets/img/noImage.jpg' : t.get('LogoEmpresa').url())
-      };
-      });
-=======
         return {
               id: t.id,
               nombre: t.get('Nombre'),
@@ -48,7 +38,6 @@ export class TabTarjetasPage implements OnInit {
             };
       });
       this.copyOfMisTarjetas = Array.from(this.misTarjetas);
->>>>>>> 9e3a7987c4992243f0fbf7f1fe016a185f084924
       this.loadingService.dissminsLoading();
     }, () => {
       this.loadingService.dissminsLoading();
