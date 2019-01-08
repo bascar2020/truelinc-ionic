@@ -15,26 +15,23 @@ export class TarjetaService {
   constructor(
     private storage: Storage) {}
 
-    public getTarjetasCurrentUser(): Observable < TarjetaDeck[] > {
+    public getTarjetasCurrentUser(): Observable < Parse.Object[] > {
       const tarjetas: TarjetaDeck[] = [];
-      this.storage.get('currentUser').then(async (val) => {
-        const Tarjetas = Parse.Object.extend('Tarjetas');
-        const query = new Parse.Query(Tarjetas);
-        query.containedIn('objectId', val.tarjetas);
-        query.descending('Empresa');
-        const results = await query.find();
-        results.map(t => (
-          tarjetas.push({
-            id: t.id,
-            nombre: t.get('Nombre'),
-            empresa: t.get('Empresa'),
-            cargo: t.get('Cargo'),
-            logo: (t.get('LogoEmpresa') === undefined ? 'assets/img/noImage.jpg' : t.get('LogoEmpresa').url())
-          })
-        ));
-      });
-      return of(tarjetas);
-    }
+      return from (this.storage.get('currentUser').then(
+      (val) => {
+      const Tarjetas = Parse.Object.extend('Tarjetas');
+      const query = new Parse.Query(Tarjetas);
+      console.log(val);
+      query.containedIn('objectId', val.tarjetas);
+      query.descending('Empresa');
+      return (query.find());
+      },
+      (error) => {
+      console.error(error);
+      },
+      )
+      );
+      }
 
     public getTargetasById(id: String): Observable<Parse.Object> {
       const Tarjetas = Parse.Object.extend('Tarjetas');

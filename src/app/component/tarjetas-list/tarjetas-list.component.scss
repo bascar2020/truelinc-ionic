@@ -1,0 +1,38 @@
+#img-user{
+
+    width: 80px;
+    height: 80px;
+    --border-radius: 50%;
+}
+
+.list-md {
+    margin: -20px;
+    /* margin: 0; */
+    background: var(--ion-item-background,var(--ion-background-color,transparent)); 
+}
+
+h4{
+    font-size: 16px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    color: #5d5d5d;
+}
+
+h5{
+    font-size: 14px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-transform: capitalize;
+    color: #5d5d5d;
+
+}
+
+h6{
+    font-size: 12px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-transform: capitalize;
+    color: #5d5d5d;
+
+}

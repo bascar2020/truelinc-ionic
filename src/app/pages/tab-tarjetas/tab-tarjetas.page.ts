@@ -24,7 +24,16 @@ export class TabTarjetasPage implements OnInit {
   private getTarjetas() {
     this.loadingService.presentLoading();
     this.tarjetaService.getTarjetasCurrentUser().subscribe((tarjetas) => {
-      this.misTarjetas = tarjetas;
+      console.log(tarjetas);
+      this.misTarjetas = tarjetas.map((t) => {
+      return {
+      id: t.id,
+      nombre: t.get('Nombre'),
+      empresa: t.get('Empresa'),
+      cargo: t.get('Cargo'),
+      logo: (t.get('LogoEmpresa') === undefined ? 'assets/img/noImage.jpg' : t.get('LogoEmpresa').url())
+      };
+      });
       this.loadingService.dissminsLoading();
     });
   }
