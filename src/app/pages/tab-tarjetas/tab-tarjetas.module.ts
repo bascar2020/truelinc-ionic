@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { TabTarjetasPage } from './tab-tarjetas.page';
 import { TarjetasListComponent } from 'src/app/component/tarjetas-list/tarjetas-list.component';
+import { SearchComponent } from 'src/app/component/search/search.component';
 
 const routes: Routes = [
   { path : '',
@@ -19,8 +20,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-   //  MycardPageModule,
   ],
-  declarations: [ TabTarjetasPage, TarjetasListComponent]
+  declarations: [ TabTarjetasPage, TarjetasListComponent, SearchComponent]
 })
 export class TabTarjetasPageModule {}

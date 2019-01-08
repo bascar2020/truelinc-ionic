@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Parse} from 'parse';
-import {ToastController} from '@ionic/angular';
+import { ToastService } from '../services/toast.service';
 
 @Component(
     {selector: 'app-login', templateUrl: './login.page.html', styleUrls: ['./login.page.scss']}
@@ -11,7 +11,7 @@ export class LoginPage implements OnInit {
   private password: string;
     constructor(
       private router: Router,
-      private toastCtrl: ToastController,
+      private toast: ToastService,
       ) {}
 
     ngOnInit() {}
@@ -27,11 +27,11 @@ export class LoginPage implements OnInit {
                 // Clears up the form
                 this.username = '';
                 this.password = '';
-                this.presentToast('successfully');
+                this.toast.presentToast('successfully');
 
             }, err => {
                 console.log('Error signing in', err);
-                this.presentToast(err.message);
+                this.toast.presentErrorToast('Error signing in' + err.message);
             });
     }
     signIn() {
@@ -43,15 +43,7 @@ export class LoginPage implements OnInit {
                 this.router.navigateByUrl('/home');
             }, err => {
                 console.log('Error logging in', err);
-                this.presentToast(err.message);
+                this.toast.presentErrorToast('Error logging in' + err.message);
             });
     }
-
-    async presentToast(msj) {
-        const toast = await this
-            .toastCtrl
-            .create({message: msj, position: 'top', duration: 2000});
-      return await toast.present();
-    }
-
 }
