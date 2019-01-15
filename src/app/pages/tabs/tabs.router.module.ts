@@ -27,6 +27,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../tab-search/tab-search.module#TabSearchPageModule'
+          },
+          {
+            path: ':id',
+            loadChildren: '../../mycard/mycard.module#MycardPageModule'
           }
         ]
       },

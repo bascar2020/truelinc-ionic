@@ -27,7 +27,7 @@ export class TabTarjetasPage implements OnInit {
   private getTarjetas() {
     this.loadingService.presentLoading();
     this.tarjetaService.getTarjetasCurrentUser().subscribe((tarjetas) => {
-      console.log(tarjetas);
+      // console.log(tarjetas);
       this.misTarjetas = tarjetas.map((t) => {
         return {
               id: t.id,
@@ -52,5 +52,9 @@ export class TabTarjetasPage implements OnInit {
     this.misTarjetas = tarjetasFiltered;
   }
 
+  doRefresh(event) {
+    this.getTarjetas();
+    event.target.complete();
+  }
 
 }

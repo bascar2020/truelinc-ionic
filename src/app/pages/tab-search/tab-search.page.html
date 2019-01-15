@@ -5,28 +5,51 @@
   </ion-header>
   
   <ion-content padding>
-      <div padding>
+      <!-- <div padding>
           <h3 text-center padding-top>Escoje tu rango de busqueda</h3>
-      </div>
+      </div> -->
 
-      <ion-segment>
-          <ion-segment-button checked>
+      <ion-segment (ionChange)="segmentChanged($event)">
+          <ion-segment-button checked value="cerca">
             <ion-label>Cerca</ion-label>
           </ion-segment-button>
-          <ion-segment-button>
+          <ion-segment-button value="ciudad">
             <ion-label>Ciudad</ion-label>
           </ion-segment-button>
-          <ion-segment-button>
+          <ion-segment-button value="nacional">
             <ion-label>Nacional</ion-label>
           </ion-segment-button>
         </ion-segment>
 
     
-      <ion-searchbar  animated (ionInput)="searchTarjetas($event)"></ion-searchbar>
+      <ion-searchbar  showCancelButton (ionInput)="searchTarjetas($event)"></ion-searchbar>
+
    
 
-      
-    <ion-list no-padding>
+      <ion-list no-padding *ngIf="tarjetas">
+          <ion-card *ngFor="let item of tarjetas" >
+                <ion-item (click)="go(item.id)" routerDirection="forward">
+                    <ion-col size="4">
+                        <ion-thumbnail id="img-user">
+                            <ion-img src="{{item.logo}}" ></ion-img>
+                        </ion-thumbnail>
+                      </ion-col>
+                      <ion-col size="8">
+                          <ion-list>
+                              <ion-text><h4>{{item.empresa}}</h4></ion-text>
+                              <ion-text><h5>{{item.nombre}}</h5></ion-text>
+                              <ion-text><h6>{{item.cargo}}</h6></ion-text>
+                            </ion-list>
+                        </ion-col>
+                  </ion-item>
+          </ion-card>
+        </ion-list>
+        
+        <ion-text padding color="light" *ngIf="!tarjetas?.length > 0">
+            <h6>Busqueda sin resultados</h6>
+          </ion-text>
+
+    <!-- <ion-list no-padding>
     <ion-card >
         
           <ion-item href="#">
@@ -47,6 +70,6 @@
     </ion-card>
     
   
-    </ion-list>  
+    </ion-list>   -->
   </ion-content>
   

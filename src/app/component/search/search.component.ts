@@ -9,7 +9,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class SearchComponent implements AfterViewInit {
   @Input() items: any[] = [];
-  @Input() filteredProperty: string;
 
   @Output() searchCompleted = new EventEmitter();
   @Output() searchStarted = new EventEmitter();
@@ -24,13 +23,15 @@ export class SearchComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.searchSubject.pipe(debounceTime(500), distinctUntilChanged()).subscribe(searchedText => {
+    this.searchSubject.pipe(debounceTime(300), distinctUntilChanged()).subscribe(searchedText => {
 
       if (!this.items) { return this.searchCompleted.emit([]); }
       if (!searchedText) { return this.searchCompleted.emit(this.items); }
 
       const filteredItems = this.items.filter((item) => {
-        return item[this.filteredProperty].toLowerCase().includes(searchedText.toLowerCase());
+         return item['empresa'].toLowerCase().includes(searchedText.toLowerCase()) ||
+             item['nombre'].toLowerCase().includes(searchedText.toLowerCase()) ||
+             item['cargo'].toLowerCase().includes(searchedText.toLowerCase());
       });
 
       this.searchCompleted.emit(filteredItems);
