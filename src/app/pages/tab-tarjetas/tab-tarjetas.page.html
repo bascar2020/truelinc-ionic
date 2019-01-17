@@ -5,14 +5,12 @@
   </ion-header>
 
 <ion-content padding>
-        <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-                <ion-refresher-content></ion-refresher-content>
-              </ion-refresher>
-
+    <ion-item>
   <app-search (searchCompleted)="filteredTarjetas($event)"
   [items]="copyOfMisTarjetas">
   </app-search>
-    <app-tarjetas-list
+</ion-item>
+    <app-tarjetas-list class="tarjeta"
         [items]="misTarjetas"
         [navigateTo]="generateUrl">
     </app-tarjetas-list>

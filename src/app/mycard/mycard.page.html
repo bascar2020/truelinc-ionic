@@ -14,13 +14,13 @@
                   <ion-thumbnail id="img-user">
                       <ion-img   [src]="miTarjeta.foto" ></ion-img>
                   </ion-thumbnail>
-                  <ion-label>{{miTarjeta?.nombre}}</ion-label>
+                  <ion-text><h5>{{miTarjeta?.nombre}}</h5></ion-text>
                 </ion-col>
                 <ion-col size="6" style="text-align: -webkit-center;">
                     <ion-thumbnail id="img-user">
                         <ion-img  [src]="miTarjeta.logo"></ion-img>
                     </ion-thumbnail>
-                    <ion-label>{{miTarjeta?.empresa}}</ion-label>
+                    <ion-text><h5>{{miTarjeta?.empresa}}</h5></ion-text>
                   </ion-col>
             </ion-item>
     
@@ -53,7 +53,7 @@
                         <ion-img src="assets/img/phone.png"></ion-img>
                     </ion-thumbnail>
                   </ion-col>
-                  <ion-label>Telefono: <p>{{miTarjeta?.telefono}}</p></ion-label>
+                  <ion-text>Telefono:<h5>{{miTarjeta?.telefono}}</h5></ion-text>
               </ion-item>
               <ion-item id="datos" >
                   <ion-col size="3">
@@ -61,12 +61,16 @@
                           <ion-img src="assets/img/home.png"></ion-img>
                       </ion-thumbnail>
                     </ion-col>
-                    <ion-label>Direccion: <p>{{miTarjeta?.direccion}}</p></ion-label>
+                    <ion-col size="6">
+                    <ion-text>Direccion: <h5>{{miTarjeta?.direccion}}</h5></ion-text>
+                    </ion-col>
+                    <ion-col size="3">
                     <ion-thumbnail id="img-icon">
                             <ion-button class="btn-red"> 
                                 <ion-img class="img-red" src="assets/img/maps.png" text-center></ion-img>
                            </ion-button>
                         </ion-thumbnail>
+                    </ion-col>
                 </ion-item>
                 <ion-item id="datos">
                     <ion-col size="3">
@@ -74,7 +78,7 @@
                             <ion-img  src="assets/img/mail.png"></ion-img>
                         </ion-thumbnail>
                       </ion-col>
-                      <ion-label>Correo: <p>{{miTarjeta?.email}}</p></ion-label>
+                      <ion-text>Correo: <h5>{{miTarjeta?.email}}</h5></ion-text>
                   </ion-item>
                 <ion-item id="datos">
     
