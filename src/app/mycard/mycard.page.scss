@@ -2,29 +2,47 @@ ion-content{
     --background: #faf9f8;
 }
 
-ion-button{
 
-        font-family: inherit;
-        font-size: inherit;
-        font-style: inherit;
-        letter-spacing: inherit;
-        color: #fff;
-        --background: red;
-        overflow: var(--overflow);
-
-}
 
 .btn-red{
-    --background: #fff;
+    --background: fff;
+    width: 40px;
+    height: 40px;
+    margin-top: -3%;
+    overflow: hidden;
+}
+
+
+
+.btn-maps{
+    --background: fff;
     width: 44px;
     height: 44px;
+    margin-top: -18%;
+    margin-left: 80%;
+    overflow: hidden;
     
 }
 .img-red{
     position: absolute;
+    width: 38px;
+    height: 38px;
+  
+}
+
+
+.img-maps{
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    margin-left: 2px
    
 }
 
+
+.telefono{
+    --background: red;
+}
 
 #img-user{
 
@@ -34,8 +52,16 @@ ion-button{
 }
 
 #img-icon{
-    width: 48px;
-    height: 48px;
+    width: 38px;
+    height: 38px;
+    margin-right: 6px;
+    
+}
+
+#img-icon-maps{
+    width: 33px;
+    height: 33px;
+    --border-radius: 20%;
 }
 
 #datos{
@@ -43,7 +69,8 @@ ion-button{
 }
 
 #tweet{
-    height: 120px;
+    height: auto;
+    width: 100%;
 }
 
 #red{
@@ -91,6 +118,8 @@ h6{
     font-size: 12px;
     margin-top: 3px;
     margin-bottom: 3px;
+    padding-bottom:3px;
+    color: #5d5d5d;
 
 }
 

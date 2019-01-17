@@ -1,0 +1,84 @@
+#img-user{
+
+    width: 80px;
+    height: 80px;
+    --border-radius: 50%;
+}
+
+.tarjeta{
+    position: absolute;
+    height: 500%;
+    width: 200%;
+    margin-top: -50%;
+    margin-left: -40%;
+  
+    
+}
+
+
+
+.list-md {
+    margin: -20px;
+    background: var(--ion-item-background,var(--ion-background-color,transparent)); 
+}
+
+
+
+ion-item{
+
+    --background: rgba(255, 255, 255, 0.75);
+
+
+}
+
+.sc-ion-card-ios-s ion-list {
+    margin: 0;
+    background: transparent;
+    margin-top: 8px;
+}
+
+.sc-ion-card-ios-h {
+   
+    /* --color: var(--ion-color-step-600,#666); */
+    margin: 24px 16px;
+    margin-top: 24px;
+    margin-right: 16px;
+    margin-bottom: 24px;
+    margin-left: 16px;
+    border-radius: 8px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    font-size: 14px;
+    /* -webkit-box-shadow: 0 4px 16px rgba(0,0,0,.12); */
+    box-shadow: 0 4px 16px rgba(0,0,0,.12);
+}
+
+h4{
+    font-size: 16px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    color: #5d5d5d;
+    padding-top: 4px;
+}
+
+h5{
+    font-size: 14px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-transform: capitalize;
+    color: #5d5d5d;
+    padding-top: 2px;
+
+}
+h6{
+    font-size: 12px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-bottom:3px;
+    text-transform: capitalize;
+    color: #5d5d5d;
+    padding-top: 2px;
+
+}
+

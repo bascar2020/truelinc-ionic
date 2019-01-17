@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title text-center><img src="assets/img/logoLargo.png" style="height: 44px;"></ion-title>
+            <ion-title text-center><img class="img" src="assets/img/logoLargo.png"></ion-title>
       </ion-toolbar>
   </ion-header>
   
@@ -28,6 +28,7 @@
 
       <ion-list no-padding *ngIf="tarjetas">
           <ion-card *ngFor="let item of tarjetas" >
+                <ion-img class="tarjeta" src="{{item.logo}}"></ion-img>
                 <ion-item (click)="go(item.id)" routerDirection="forward">
                     <ion-col size="4">
                         <ion-thumbnail id="img-user">
@@ -40,13 +41,19 @@
                               <ion-text><h5>{{item.nombre}}</h5></ion-text>
                               <ion-text><h6>{{item.cargo}}</h6></ion-text>
                             </ion-list>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
                         </ion-col>
+                        
                   </ion-item>
           </ion-card>
         </ion-list>
         
         <ion-text padding color="light" *ngIf="!tarjetas?.length > 0">
-            <h6>Busqueda sin resultados</h6>
+            <h6 text-center >Busqueda sin resultados</h6>
           </ion-text>
 
     <!-- <ion-list no-padding>

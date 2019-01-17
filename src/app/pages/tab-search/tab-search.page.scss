@@ -1,39 +1,72 @@
-
-ion-content{
-    --background: #faf9f8;
-}
-
-ion-card{
-    --background: #fff;
-    padding-top: 22px;
-
-}
-
-
-
 #img-user{
 
     width: 80px;
     height: 80px;
     --border-radius: 50%;
 }
-.list-md {
-    margin: -21px;
+
+.tarjeta{
+    position: absolute;
+    height: 400%;
+    width: 200%;
+    margin-top: -50%;
+    margin-left: -40%;
+
 }
 
 
-h3{
-    color: #a8a8a8;
-    margin-top: -40px;
+
+
+
+.list-md  {
+    margin-right: -20px;
+    margin-left: -20px;
+    background: var(--ion-item-background,var(--ion-background-color,transparent)); 
 }
+.list-ios {
+    margin: -20px;
+    background: var(--ion-item-background,var(--ion-background-color,transparent)); 
+}
+
+.img{
+    height: 44px;
+
+    padding: 2%;
+
+}
+
+ion-icon{
+
+    color: rgb(216, 194, 0);
+}
+
+ion-item{
+
+    --background: rgba(255, 255, 255, 0.92);
+
+
+}
+
+.sc-ion-card-ios-s ion-list {
+    margin: 0;
+    background: transparent;
+    margin-top: 8px;
+}
+
+.sc-ion-card-ios-h {
+
+    --webkit-transform: translateZ(0);
+    margin: 8px;
+}
+
 h4{
     font-size: 16px;
     margin-top: 3px;
     margin-bottom: 3px;
     text-transform: uppercase;
     color: #5d5d5d;
+    padding-top: 4px;
 }
-
 
 h5{
     font-size: 14px;
@@ -41,43 +74,17 @@ h5{
     margin-bottom: 3px;
     text-transform: capitalize;
     color: #5d5d5d;
+    padding-top: 2px;
 
 }
-
 h6{
     font-size: 12px;
     margin-top: 3px;
     margin-bottom: 3px;
+    padding-bottom:3px;
     text-transform: capitalize;
     color: #5d5d5d;
+    padding-top: 2px;
 
 }
 
-.sc-ion-card-md-h {
-    margin: 0px;
-
-}
-
-
-.sc-ion-segment-md-h {
-    margin-top: -25px;
-    --background: none;
-    --background-checked: none;
-    --background-hover: rgba(var(--ion-color-primary-rgb,56,128,255),0.04);
-    --background-activated: rgba(var(--ion-color-primary-rgb,56,128,255),0.16);
-    --color: rgba(var(--ion-text-color-rgb,0,0,0),0.6);
-    --color-checked: var(--ion-color-primary,#3880ff);
-    --color-checked-disabled: var(--color-checked);
-    --indicator-color: #a8a8a8;
-}
-
-.sc-ion-searchbar-md-h {
-    --clear-button-color: initial;
-    --cancel-button-color: var(--ion-color-step-900,#1a1a1a);
-    --color: var(--ion-color-step-850,#262626);
-    --icon-color: var(--ion-color-step-600,#666);
-    --background: var(--ion-background-color,#fff);
-    padding: 8px;
-    background: inherit;
-    margin-bottom: 16px;
-}

@@ -1,5 +1,6 @@
 <ion-list no-padding *ngIf="items">
   <ion-card *ngFor="let item of items" >
+        <ion-img class="tarjeta" src="{{item.logo}}"></ion-img>
         <ion-item (click)="go(item.id)" routerDirection="forward">
             <ion-col size="4">
                 <ion-thumbnail id="img-user">
@@ -12,10 +13,17 @@
                       <ion-text><h5>{{item.nombre}}</h5></ion-text>
                       <ion-text><h6>{{item.cargo}}</h6></ion-text>
                     </ion-list>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                     
                 </ion-col>
           </ion-item>
+
   </ion-card>
 </ion-list>
-<ion-text padding color="light" *ngIf="!items?.length > 0">
+<ion-text text-center padding *ngIf="!items?.length > 0">
         <h6>Ohh.. Aun no tienes tarjetas Truelinc</h6>
       </ion-text>
