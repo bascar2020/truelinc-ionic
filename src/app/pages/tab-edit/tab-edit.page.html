@@ -4,7 +4,7 @@
     </ion-toolbar>
   </ion-header>
   
-  <ion-content padding>
+  <ion-content padding> 
 
       <ion-item>
           <ion-col size="6" style="text-align: -webkit-center;">
@@ -63,13 +63,30 @@
                     </ion-col>
                 </ion-item>
 
+                
+                
+
+                <ion-item class="tag">
+                    <ion-col size="12">
+                    <ion-label>Tags</ion-label>
+                </ion-col>
+            </ion-item>
+                <ion-item>
+                     <ion-chip>
+                        
+                        <ion-label>Icon Chip</ion-label>
+                        <ion-icon name="close"></ion-icon>
+                      </ion-chip>
+                </ion-item>
+                
+
         <ion-item >
             <ion-col size="3">
                 <ion-thumbnail id="img-icon">
                     <ion-img src="assets/img/phone.png"></ion-img>
                 </ion-thumbnail>
               </ion-col>
-                          <ion-item>
+                          <ion-item class="input">
                                   <ion-label position="floating">Telefono</ion-label>
                                   <ion-input type="number"></ion-input>
                           </ion-item>
@@ -80,7 +97,7 @@
                       <ion-img src="assets/img/home.png"></ion-img>
                   </ion-thumbnail>
                 </ion-col>
-                <ion-item>
+                <ion-item class="input">
                         <ion-label position="floating">Direccion</ion-label>
                         <ion-input type="text"></ion-input>
                 </ion-item>
@@ -91,7 +108,7 @@
                         <ion-img src="assets/img/mail.png"></ion-img>
                     </ion-thumbnail>
                   </ion-col>
-                  <ion-item>
+                  <ion-item class="input">
                         <ion-label position="floating">Correo</ion-label>
                         <ion-input type="email"></ion-input>
                 </ion-item>
@@ -104,7 +121,7 @@
                             <ion-img src="assets/img/face.png"></ion-img>
                         </ion-thumbnail>
                       </ion-col>
-                      <ion-item>
+                      <ion-item class="input">
                             <ion-label position="floating">Facebook</ion-label>
                             <ion-input type="text"></ion-input>
                     </ion-item>
@@ -117,7 +134,7 @@
                                 <ion-img src="assets/img/insta.png"></ion-img>
                             </ion-thumbnail>
                           </ion-col>
-                          <ion-item>
+                          <ion-item class="input">
                                 <ion-label position="floating">Instagram</ion-label>
                                 <ion-input type="text"></ion-input>
                         </ion-item>
@@ -130,16 +147,27 @@
                                     <ion-img src="assets/img/web.png"></ion-img>
                                 </ion-thumbnail>
                               </ion-col>
-                              <ion-item>
+                              <ion-item class="input">
                                     <ion-label position="floating">Pagina Web</ion-label>
                                     <ion-input type="text"></ion-input>
                             </ion-item>
             
                           </ion-item>
 
-              <ion-item text-center>
-                  <h6>Deseas que tu tarjeta TRUELINK sea publica</h6>
+              <ion-item class="privada" text-center>
+                  <ion-col size="9">
+                  <h5>Deseas que tu tarjeta TRUELINK sea publica</h5>
+                </ion-col>
+                <ion-col size="3">
                   <ion-toggle [(ngModel)]="privada"></ion-toggle>
+                </ion-col>
+                 
+                </ion-item>
+               
+                <ion-item class="privacidad" text-center>
+                        <div text-center>
+                                <h6>La privacidad de la tarjeta genera un costo adicional</h6> 
+                          </div>
                 </ion-item>
                 
               <ion-item >
@@ -148,7 +176,7 @@
 
           
           
-            <div margin-top text-center>
+            <div  text-center>
               <ion-button class="btn-item" color="danger" (click)="logOut()" size="large" expand="full" >Log out</ion-button>
             </div>
   </ion-content>

@@ -2,6 +2,34 @@ ion-content{
     --background: #faf9f8;
 }
 
+
+.privada{
+
+    margin-bottom: 6px;
+    --background: #fff;
+    
+}
+.privacidad{
+
+    margin-top: -6%;
+    align-self: auto;
+    display: grid;
+    justify-content: center;
+    height: 20px;
+    --background: transparent;
+    margin-bottom: 5%;
+    
+}
+
+.tag{
+
+    margin-bottom: -3%;
+}
+
+.input{
+
+    width: 100%
+}
 ion-item{
     margin-bottom: 6px;
     margin-left: -15px;
@@ -82,15 +110,21 @@ h4{
 }
 
 h5{
-    font-size: 14px;
+    font-size: 0.69em;
     margin-top: 3px;
     margin-bottom: 3px;
+    padding-bottom:3px;
+    color: #5d5d5d;
 
 }
 
 h6{
-    font-size: 12px;
+    font-size: 11px;
     margin-top: 3px;
     margin-bottom: 3px;
+    padding-bottom:3px;
+    color: #9e9e9e;
+    
 
 }
+

@@ -29,18 +29,18 @@
                   <h5>{{miTarjeta?.twit}}</h5>
                 </div>
               </ion-item>
-              <ion-item id="list-date" style="text-align: -webkit-ri;">
-                    <ion-thumbnail id="img-icon" *ngIf="miTarjeta?.facebook">
+              <ion-item class="redes" item-end >
+                    <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.facebook">
                             <ion-button class="btn-red"  [href]="miTarjeta?.facebook"> 
                                 <ion-img class="img-red" src="assets/img/face.png" text-center></ion-img>
                            </ion-button>
                         </ion-thumbnail>
-                        <ion-thumbnail id="img-icon" *ngIf="miTarjeta?.instagram">
+                        <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.instagram">
                                 <ion-button class="btn-red"  [href]="miTarjeta?.instagram"> 
                                     <ion-img class="img-red" src="assets/img/insta.png" text-center></ion-img>
                                </ion-button>
                             </ion-thumbnail>
-                            <ion-thumbnail id="img-icon" *ngIf="miTarjeta?.www">
+                            <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.www">
                                     <ion-button class="btn-red"  [href]="miTarjeta?.www"> 
                                         <ion-img class="img-red" src="assets/img/web.png" text-center></ion-img>
                                    </ion-button>
