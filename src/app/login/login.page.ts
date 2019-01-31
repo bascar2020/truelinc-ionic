@@ -15,24 +15,8 @@ export class LoginPage implements OnInit {
       ) {}
 
     ngOnInit() {}
-    goLogin() {
-        this.router.navigateByUrl('/home');
-    }
-    signUp() {
-        Parse.User
-            .signUp(this.username, this.password)
-            .then((resp) => {
-                console.log('Logged in successfully', resp);
-
-                // Clears up the form
-                this.username = '';
-                this.password = '';
-                this.toast.presentToast('successfully');
-
-            }, err => {
-                console.log('Error signing in', err);
-                this.toast.presentErrorToast('Error signing in' + err.message);
-            });
+    goSignUp() {
+        this.router.navigateByUrl('/signup');
     }
     signIn() {
         Parse.User

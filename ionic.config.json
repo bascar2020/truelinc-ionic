@@ -1,7 +1,8 @@
 {
   "name": "truelinc",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular",
   "id": "19af4581"

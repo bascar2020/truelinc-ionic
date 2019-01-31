@@ -5,7 +5,7 @@
   </ion-header>
   
   <ion-content padding> 
-
+<form class="form" [formGroup]="editarForm" (ngSubmit)="onSubmit()">
       <ion-item>
           <ion-col size="6" style="text-align: -webkit-center;">
               <ion-thumbnail id="img-user">
@@ -31,7 +31,7 @@
                 <ion-col size="12">
                       <ion-item>
                               <ion-label position="floating">Empresa</ion-label>
-                              <ion-input type="text"></ion-input>
+                              <ion-input formControlName="empresa" type="text"></ion-input>
                       </ion-item>
                   </ion-col>
               </ion-item>
@@ -40,7 +40,7 @@
               <ion-col size="12">
                     <ion-item>
                             <ion-label position="floating">Nombre</ion-label>
-                            <ion-input type="text"></ion-input>
+                            <ion-input formControlName="nombre" type="text"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-item>
@@ -49,7 +49,7 @@
                     <ion-col size="12">
                           <ion-item>
                                   <ion-label position="floating">Cargo</ion-label>
-                                  <ion-input type="text"></ion-input>
+                                  <ion-input formControlName="cargo" type="text"></ion-input>
                           </ion-item>
                       </ion-col>
                   </ion-item>
@@ -58,7 +58,7 @@
                   <ion-col size="12">
                       <ion-label>Perfil o Informacion adicional</ion-label>
                       <ion-item>
-                          <ion-textarea placeholder="Escribe tu descripcion"></ion-textarea>
+                          <ion-textarea formControlName="twit" placeholder="Escribe tu descripcion"></ion-textarea>
                         </ion-item>
                     </ion-col>
                 </ion-item>
@@ -88,7 +88,7 @@
               </ion-col>
                           <ion-item class="input">
                                   <ion-label position="floating">Telefono</ion-label>
-                                  <ion-input type="number"></ion-input>
+                                  <ion-input formControlName="telefono" type="number"></ion-input>
                           </ion-item>
           </ion-item>
           <ion-item >
@@ -99,7 +99,7 @@
                 </ion-col>
                 <ion-item class="input">
                         <ion-label position="floating">Direccion</ion-label>
-                        <ion-input type="text"></ion-input>
+                        <ion-input formControlName="direccion" type="text"></ion-input>
                 </ion-item>
             </ion-item>
             <ion-item >
@@ -110,7 +110,7 @@
                   </ion-col>
                   <ion-item class="input">
                         <ion-label position="floating">Correo</ion-label>
-                        <ion-input type="email"></ion-input>
+                        <ion-input formControlName="correo" type="email"></ion-input>
                 </ion-item>
 
               </ion-item>
@@ -123,7 +123,7 @@
                       </ion-col>
                       <ion-item class="input">
                             <ion-label position="floating">Facebook</ion-label>
-                            <ion-input type="text"></ion-input>
+                            <ion-input formControlName="facebook" type="text"></ion-input>
                     </ion-item>
     
                   </ion-item>
@@ -136,7 +136,7 @@
                           </ion-col>
                           <ion-item class="input">
                                 <ion-label position="floating">Instagram</ion-label>
-                                <ion-input type="text"></ion-input>
+                                <ion-input formControlName="instagram" type="text"></ion-input>
                         </ion-item>
         
                       </ion-item>
@@ -149,17 +149,17 @@
                               </ion-col>
                               <ion-item class="input">
                                     <ion-label position="floating">Pagina Web</ion-label>
-                                    <ion-input type="text"></ion-input>
+                                    <ion-input formControlName="web" type="text"></ion-input>
                             </ion-item>
             
                           </ion-item>
 
               <ion-item class="privada" text-center>
                   <ion-col size="9">
-                  <h5>Deseas que tu tarjeta TRUELINK sea publica</h5>
+                  <h5>Deseas que tu tarjeta TRUELINK sea PRIVADA</h5>
                 </ion-col>
                 <ion-col size="3">
-                  <ion-toggle [(ngModel)]="privada"></ion-toggle>
+                  <ion-toggle formControlName="privada" ></ion-toggle>
                 </ion-col>
                  
                 </ion-item>
@@ -171,7 +171,7 @@
                 </ion-item>
                 
               <ion-item >
-            <ion-button class="btn-item" expand="full" >GUARDAR CAMBIOS</ion-button>
+            <ion-button type='submit' [disabled]="!editarForm.valid" class="btn-item" expand="full" >GUARDAR CAMBIOS</ion-button>
           </ion-item>
 
           
@@ -179,6 +179,7 @@
             <div  text-center>
               <ion-button class="btn-item" color="danger" (click)="logOut()" size="large" expand="full" >Log out</ion-button>
             </div>
+        </form>
   </ion-content>
 
   

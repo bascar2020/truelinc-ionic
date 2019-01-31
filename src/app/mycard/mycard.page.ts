@@ -50,7 +50,6 @@ export class MycardPage implements OnInit {
         instagram : t.get('instagram'),
 
       };
-      console.log(this.miTarjeta);
       this.loadingService.dissminsLoading();
      });
   }
