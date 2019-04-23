@@ -23,19 +23,23 @@ export class TabCameraPage implements OnInit {
   }
 
   ngOnInit() {
+    this.scanCode();
   }
 
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
       alert('Barcode data ' + JSON.stringify(barcodeData));
       this.scannedData = barcodeData;
+      console.log(this.scannedData);
+
     }).catch(err => {
       console.log('Error', err);
     });
   }
 
   encodedText() {
-    this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, this.encodeData).then((encodedData) => {
+    this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, this.encodeData)
+    .then((encodedData) => {
       console.log(encodedData);
       this.encodeData = encodedData;
     }, (err) => {

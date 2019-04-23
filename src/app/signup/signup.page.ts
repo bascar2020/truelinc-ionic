@@ -5,6 +5,8 @@ import { Parse } from 'parse';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { LoaderService } from '../services/loader.service';
 import { Storage } from '@ionic/storage';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Base64 } from '@ionic-native/base64/ngx';
 
 @Component({
   selector: 'app-signup',
@@ -14,13 +16,14 @@ import { Storage } from '@ionic/storage';
 export class SignupPage implements OnInit {
 
   validations_form: FormGroup;
-
   constructor(
     private router: Router,
     private toast: ToastService,
     private formBuilder: FormBuilder,
     private loadingService: LoaderService,
     private storage: Storage,
+    private barcodeScanner: BarcodeScanner,
+    private base64: Base64
   ) {
 
   }
@@ -41,7 +44,7 @@ export class SignupPage implements OnInit {
     this.loadingService.presentLoading();
     Parse.User.signUp(this.validations_form.value.correo, this.validations_form.value.password)
         .then(async (resp) => {
-            console.log('Logged in successfully', resp);
+            // console.log('Logged in successfully', resp);
             const Tarjetas = Parse.Object.extend('Tarjetas');
             const tarjetaUser = new Tarjetas();
             tarjetaUser.set('Empresa', this.validations_form.value.empresa);
@@ -56,6 +59,19 @@ export class SignupPage implements OnInit {
             resp.set('mi_tarjeta', tarjetaUser);
             await resp.save();
             // Clears up the form
+            await this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, `truelinc+:+${resp.id}`)
+            .then((encodedData) => {
+                const filePath: string = encodedData['file'];
+                this.base64.encodeFile(filePath).then((base64File: string) => {
+                  const parseFile = new Parse.File(`${resp.id}.jpg`, base64File);
+                  tarjetaUser.set('QR', parseFile);
+                }, (err) => {
+                  console.log('Error occured base64 : ' + err);
+                });
+            },(err) => {
+              console.log('Error occured ecoded: ' + err);
+            });
+            await tarjetaUser.save();
             this.toast.presentToast('successfully');
             this.storage.set('currentUser', resp.toJSON());
             this.router.navigateByUrl('/home');
@@ -95,5 +111,6 @@ export class SignupPage implements OnInit {
   get password() {
     return this.validations_form.get('password');
   }
+
 
 }

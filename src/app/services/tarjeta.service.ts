@@ -38,14 +38,14 @@ export class TarjetaService {
          return from(query.find());
     }
 
-    public getTarjetasSearch(substring: String): Observable < Parse.Object[] > {
+    public getTarjetasSearch(substring: String): Observable < Parse.Object> {
         const Tarjetas = Parse
             .Object
             .extend('Tarjetas');
         const queryName = new Parse.Query(Tarjetas).equalTo('Privada', false).contains('Nombre', substring);
         const queryEmpresa = new Parse.Query(Tarjetas).equalTo('Privada', false).contains('Empresa', substring);
         const queryTag = new Parse.Query(Tarjetas).equalTo('Privada', false).containedIn('tags', [substring]);
-        const compoundQuery = Parse
+        const compoundQuery = new Parse
             .Query
             .or(
                 queryTag,

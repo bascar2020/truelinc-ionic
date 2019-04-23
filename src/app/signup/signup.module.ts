@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { SignupPage } from './signup.page';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Base64 } from '@ionic-native/base64/ngx';
 
 const routes: Routes = [
   {
@@ -22,6 +24,10 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
   ],
-  declarations: [SignupPage]
+  declarations: [SignupPage],
+  providers: [
+    BarcodeScanner,
+    Base64,
+  ]
 })
 export class SignupPageModule {}
