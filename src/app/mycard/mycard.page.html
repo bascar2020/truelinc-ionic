@@ -8,27 +8,43 @@
 </ion-header>
       
       <ion-content padding>
+          
         <div *ngIf="miTarjeta">
-          <ion-item>
-              <ion-col size="6" style="text-align: -webkit-center;">
-                  <ion-thumbnail id="img-user">
-                      <ion-img   [src]="miTarjeta.foto" ></ion-img>
-                  </ion-thumbnail>
-                  <ion-text><h5>{{miTarjeta?.nombre}}</h5></ion-text>
-                </ion-col>
-                <ion-col size="6" style="text-align: -webkit-center;">
-                    <ion-thumbnail id="img-user">
-                        <ion-img  [src]="miTarjeta.logo"></ion-img>
-                    </ion-thumbnail>
-                    <ion-text><h5>{{miTarjeta?.empresa}}</h5></ion-text>
-                  </ion-col>
-            </ion-item>
+
+
+
+                        <ion-thumbnail id="img-logo">
+                            <ion-img  [src]="miTarjeta.logo"></ion-img>
+                        </ion-thumbnail>
+
+                        <ion-thumbnail id="img-user">
+                                <ion-img   [src]="miTarjeta.foto" ></ion-img>
+                            </ion-thumbnail>
+                        
+                      
+
+   
     
-            <ion-item id="list-date">
+            <ion-item >
+                <div id="tweet" text-center>
+                    <h5>{{miTarjeta?.nombre}}</h5>
+                </div>
+            </ion-item>
+            
+            <ion-item>
+                <div text-center id="tweet">
+                <h5>{{miTarjeta?.empresa}}</h5>
+            </div>
+            
+            </ion-item>
+
+              <ion-item>
                 <div text-center id="tweet">
                   <h5>{{miTarjeta?.twit}}</h5>
                 </div>
-              </ion-item>
+            </ion-item>
+            
+
               <ion-item class="redes" item-end >
                     <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.facebook">
                             <ion-button class="btn-red"  [href]="miTarjeta?.facebook"> 
