@@ -10,8 +10,8 @@
           <ion-col size="6" style="text-align: -webkit-center;">
               <ion-thumbnail id="img-user">
   
-                  <ion-button>
-                      <ion-img src="assets/img/noImage.jpg" ></ion-img>
+                  <ion-button (click)="getImages()">
+                      <ion-img [src]="miTarjeta?.logo" ></ion-img>
                     </ion-button>
                   </ion-thumbnail>
               <ion-label>Cambia tu foto</ion-label>
@@ -19,7 +19,7 @@
             <ion-col size="6" style="text-align: -webkit-center">
                 <ion-thumbnail id="img-user">
                     <ion-button>
-                      <ion-img src="assets/img/noImage.jpg" ></ion-img>
+                      <ion-img [src]="miTarjeta?.foto" ></ion-img>
                     </ion-button>
                   </ion-thumbnail>
                 <ion-label>Cambia tu logo</ion-label>

@@ -34,8 +34,9 @@ export class AppComponent {
       Parse.serverURL = `${c.YOUR_PARSE_SERVER}`;
       Parse.User.currentAsync().then(user => {
         if (user) {
-          this.router.navigateByUrl(user ? '/home' : '');
-          this.storage.set('currentUser', user.toJSON());
+          this.storage.set('currentUser', user.toJSON())
+          .then(succses => this.router.navigateByUrl(user ? '/home' : ''))
+          .catch(error => console.error(error.message));
         } else {
           this.router.navigateByUrl(user ? '/home' : '');
         }

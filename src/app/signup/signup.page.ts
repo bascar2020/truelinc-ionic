@@ -59,17 +59,16 @@ export class SignupPage implements OnInit {
             resp.set('mi_tarjeta', tarjetaUser);
             await resp.save();
             // Clears up the form
-            await this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, `truelinc+:+${resp.id}`)
+            await this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, `truelinc+:+${tarjetaUser.id}`)
             .then((encodedData) => {
+
                 const filePath: string = encodedData['file'];
                 this.base64.encodeFile(filePath).then((base64File: string) => {
                   const parseFile = new Parse.File(`${resp.id}.jpg`, base64File);
                   tarjetaUser.set('QR', parseFile);
                 }, (err) => {
-                  console.log('Error occured base64 : ' + err);
                 });
-            },(err) => {
-              console.log('Error occured ecoded: ' + err);
+            }, (err) => {
             });
             await tarjetaUser.save();
             this.toast.presentToast('successfully');
@@ -84,7 +83,7 @@ export class SignupPage implements OnInit {
       this.loadingService.dissminsLoading();
   }
   onSubmit() {
-    console.log(this.validations_form.value);
+   // console.log(this.validations_form.value);
     this.signUp();
 
     // TODO get form group value & handle submission

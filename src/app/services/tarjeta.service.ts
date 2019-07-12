@@ -7,6 +7,7 @@ import { Observable, of , from} from 'rxjs';
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -53,5 +54,12 @@ export class TarjetaService {
                 queryEmpresa,
             );
         return from(compoundQuery.find());
+    }
+
+    public async getStateTarjeta(id: String) {
+
+      const response = await this.storage.get('currentUser');
+      const data = response.tarjetas.find(x => x === id);
+      return data ? true : false ;
     }
 }

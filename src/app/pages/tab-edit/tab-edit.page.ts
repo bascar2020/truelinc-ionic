@@ -5,6 +5,9 @@ import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { LoaderService } from 'src/app/services/loader.service';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { TarjetaService } from 'src/app/services/tarjeta.service';
+import { Tarjeta } from 'src/app/models/tarjeta.model';
 
 @Component({
   selector: 'app-tab-edit',
@@ -15,15 +18,22 @@ export class TabEditPage implements OnInit {
 
   editarForm: FormGroup;
   objectId: String;
+  imageResponse: any;
+  options: any;
+  miTarjeta: Tarjeta;
+  objetoTarjeta: any;
   constructor(
+    private tarjetaService: TarjetaService,
     private router: Router,
     private toastCtrl: ToastController,
     private storage: Storage,
     private formBuilder: FormBuilder,
     private loadingService: LoaderService,
+    private imagePicker: ImagePicker,
   ) { }
 
 ngOnInit() {
+  const pattern = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
   this.editarForm = this.formBuilder
                 .group({
                     empresa: [
@@ -65,64 +75,97 @@ ngOnInit() {
                     ],
                     facebook: [
                         '',
-                        [Validators.pattern('https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)')]
+                        [Validators.pattern(pattern)]
                     ],
                     instagram: [
                         '',
-                        [Validators.pattern('https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)')]
+                        [Validators.pattern(pattern)]
                     ],
                     web: [
                         '',
-                        [Validators.pattern('https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)')]
+                        [Validators.pattern(pattern)]
                     ],
                     privada: false
                 });
 
     this.storage
         .get('currentUser')
-        .then((val) => {
-          this.editarForm.get('empresa').setValue(val.mi_tarjeta.Empresa);
-          this.editarForm.get('nombre').setValue(val.mi_tarjeta.Nombre);
-          this.editarForm.get('cargo').setValue(val.mi_tarjeta.Cargo);
-          this.editarForm.get('twit').setValue(val.mi_tarjeta.Twit);
-          this.editarForm.get('telefono').setValue(val.mi_tarjeta.Telefono);
-          this.editarForm.get('direccion').setValue(val.mi_tarjeta.Direccion);
-          this.editarForm.get('correo').setValue(val.mi_tarjeta.Email);
-          this.editarForm.get('facebook').setValue(val.mi_tarjeta.facebook);
-          this.editarForm.get('instagram').setValue(val.mi_tarjeta.instagram);
-          this.editarForm.get('web').setValue(val.mi_tarjeta.www);
-          this.editarForm.get('privada').setValue(val.mi_tarjeta.Privada);
-          this.objectId = val.mi_tarjeta.objectId;
+        .then(async (val) => {
+         await this.tarjetaService.getTargetasById(val.mi_tarjeta.objectId).subscribe(t => {
+            t = t[0];
+            this.objetoTarjeta = t;
+            this.miTarjeta = t;
+            this.miTarjeta = {
+              id: t.id,
+              nombre: t.get('Nombre').toString(),
+              empresa: t.get('Empresa'),
+              cargo: t.get('Cargo'),
+              logo:
+                t.get('LogoEmpresa') === undefined
+                  ? 'assets/img/noImage.jpg'
+                  : t.get('LogoEmpresa').url(),
+              foto:
+                t.get('Foto') === undefined
+                  ? 'assets/img/noImage.jpg'
+                  : t.get('Foto').url(),
+              facebook: t.get('facebook'),
+              generalRate: t.get('generalRate'),
+              twit: t.get('Twit'),
+              privade: t.get('Privada'),
+              telefono: t.get('Telefono'),
+              www: t.get('www'),
+              ciudad: t.get('Ciudad'),
+              tags: t.get('tags'),
+              email: t.get('Email'),
+              qr:
+                t.get('QR') === undefined
+                  ? 'assets/img/no-qr.png'
+                  : t.get('QR').url(),
+              geopoint: t.get('GeoPoint'),
+              twiter: t.get('twiter'),
+              direccion: t.get('Direccion'),
+              instagram: t.get('instagram')
+            };
+
+          this.editarForm.get('empresa').setValue(this.miTarjeta.empresa);
+          this.editarForm.get('nombre').setValue(this.miTarjeta.nombre);
+          this.editarForm.get('cargo').setValue(this.miTarjeta.cargo);
+          this.editarForm.get('twit').setValue(this.miTarjeta.twit);
+          this.editarForm.get('telefono').setValue(this.miTarjeta.telefono);
+          this.editarForm.get('direccion').setValue(this.miTarjeta.direccion);
+          this.editarForm.get('correo').setValue(this.miTarjeta.email);
+          this.editarForm.get('facebook').setValue(this.miTarjeta.facebook);
+          this.editarForm.get('instagram').setValue(this.miTarjeta.instagram);
+          this.editarForm.get('web').setValue(this.miTarjeta.www);
+          this.editarForm.get('privada').setValue(this.miTarjeta.privade);
+        });
         }, (error) => {
             console.error(error);
         });
 }
   async onSubmit() {
-    console.log(this.editarForm.value);
+
     this.loadingService.presentLoading();
-    const Tarjetas = Parse.Object.extend('Tarjetas');
-            const tarjetaUser = new Tarjetas();
-            tarjetaUser.set('objectId', this.objectId);
-            tarjetaUser.set('Empresa', this.editarForm.value.empresa);
-            tarjetaUser.set('Nombre', this.editarForm.value.nombre);
-            tarjetaUser.set('Privada', this.editarForm.value.privada);
-            tarjetaUser.set('Direccion', this.editarForm.value.direccion);
-            tarjetaUser.set('Telefono', this.editarForm.value.telefono);
-            tarjetaUser.set('Email', this.editarForm.value.correo);
-            tarjetaUser.set('Cargo', this.editarForm.value.cargo);
-            tarjetaUser.set('Twit', this.editarForm.value.twit);
-            tarjetaUser.set('facebook', this.editarForm.value.facebook);
-            tarjetaUser.set('instagram', this.editarForm.value.instagram);
-            tarjetaUser.set('www', this.editarForm.value.web);
-            await tarjetaUser.update();
+              this.objetoTarjeta.set('Empresa', this.editarForm.value.empresa);
+              this.objetoTarjeta.set('Nombre', this.editarForm.value.nombre);
+              this.objetoTarjeta.set('Privada', this.editarForm.value.privada);
+              this.objetoTarjeta.set('Direccion', this.editarForm.value.direccion);
+              this.objetoTarjeta.set('Telefono', this.editarForm.value.telefono);
+              this.objetoTarjeta.set('Email', this.editarForm.value.correo);
+              this.objetoTarjeta.set('Cargo', this.editarForm.value.cargo);
+              this.objetoTarjeta.set('Twit', this.editarForm.value.twit);
+              this.objetoTarjeta.set('facebook', this.editarForm.value.facebook);
+              this.objetoTarjeta.set('instagram', this.editarForm.value.instagram);
+              this.objetoTarjeta.set('www', this.editarForm.value.web);
+              await this.objetoTarjeta.save();
       this.loadingService.dissminsLoading();
   }
 
   logOut() {
     Parse.User.logOut().then((resp) => {
       console.log('Logged out successfully', resp);
-      this.router.navigateByUrl('/');
       this.storage.set('currentUser', null);
+      this.router.navigateByUrl('/');
     }, err => {
       console.log('Error logging out', err);
       this.presentToast('Error logging out');
@@ -133,6 +176,37 @@ ngOnInit() {
         .toastCtrl
         .create({message: msj, duration: 2000});
     return await toast.present();
+  }
+
+  getImages() {
+    this.options = {
+      // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
+      // selection of a single image, the plugin will return it.
+      // maximumImagesCount: 3,
+      // max width and height to allow the images to be.  Will keep aspect
+      // ratio no matter what.  So if both are 800, the returned image
+      // will be at most 800 pixels wide and 800 pixels tall.  If the width is
+      // 800 and height 0 the image will be 800 pixels wide if the source
+      // is at least that wide.
+      width: 200,
+      // height: 200,
+      // quality of resized image, defaults to 100
+      quality: 25,
+
+      // output type, defaults to FILE_URIs.
+      // available options are
+      // window.imagePicker.OutputType.FILE_URI (0) or
+      // window.imagePicker.OutputType.BASE64_STRING (1)
+      outputType: 1
+    };
+    this.imageResponse = [];
+    this.imagePicker.getPictures(this.options).then((results) => {
+      for (let i = 0; i < results.length; i++) {
+        this.imageResponse.push('data:image/jpeg;base64,' + results[i]);
+      }
+    }, (err) => {
+      alert(err);
+    });
   }
 
 

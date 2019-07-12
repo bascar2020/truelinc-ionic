@@ -21,10 +21,10 @@ export class TabTarjetasPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getTarjetas();
+     this.getTarjetas();
   }
 
-  private getTarjetas() {
+  private async getTarjetas() {
     this.loadingService.presentLoading();
     this.tarjetaService.getTarjetasCurrentUser().subscribe((tarjetas) => {
       // console.log(tarjetas);

@@ -25,7 +25,6 @@ export class TabSearchPage implements AfterViewInit {
 
 
   searchTarjetas(event: any) {
-    console.log(event.target.value);
     this.searchSubject.next(event.target.value);
   }
 
