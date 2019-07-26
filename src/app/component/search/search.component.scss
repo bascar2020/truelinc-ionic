@@ -1,8 +1,13 @@
 ion-searchbar{
-    padding-bottom: 20px;
+    padding-bottom: 0px;
     padding-top: 0px;
     padding-left: 0px;
     padding-right: 0px;
 }
+.searchbar-input-container.sc-ion-searchbar-ios {
+    height: 50px;
+}
 
-
+.sc-ion-searchbar-ios-h {
+    background: white;
+}

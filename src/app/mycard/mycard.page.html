@@ -69,7 +69,7 @@
                         <ion-img src="assets/img/phone.png"></ion-img>
                     </ion-thumbnail>
                   </ion-col>
-                  <ion-text>Telefono:<h5>{{miTarjeta?.telefono}}</h5></ion-text>
+                  <ion-text>Telefono:<a href="tel:+{{miTarjeta?.telefono}}"><h5>{{miTarjeta?.telefono}}</h5></a></ion-text>
               </ion-item>
               <ion-item id="datos" >
                   <ion-col size="3">
@@ -95,7 +95,7 @@
                             <ion-img  src="assets/img/mail.png"></ion-img>
                         </ion-thumbnail>
                       </ion-col>
-                      <ion-text>Correo: <h5>{{miTarjeta?.email}}</h5></ion-text>
+                      <ion-text>Correo: <a href="mailto:{{miTarjeta?.email}}"><h5>{{miTarjeta?.email}}</h5></a></ion-text>
                   </ion-item>
                 <ion-item id="datos">
     

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
@@ -6,7 +6,7 @@ import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-sca
   templateUrl: './tab-camera.page.html',
   styleUrls: ['./tab-camera.page.scss'],
 })
-export class TabCameraPage implements OnInit {
+export class TabCameraPage implements AfterViewInit {
 
   barcodeScannerOptions: BarcodeScannerOptions;
   encodeData: any;
@@ -22,7 +22,7 @@ export class TabCameraPage implements OnInit {
     };
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.scanCode();
   }
 

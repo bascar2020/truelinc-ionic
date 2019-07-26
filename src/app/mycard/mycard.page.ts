@@ -21,7 +21,7 @@ export class MycardPage implements OnInit {
     private tarjetaService: TarjetaService,
     private activeRoute: ActivatedRoute,
     private loadingService: LoaderService,
-    public alertController: AlertController,
+    public alertController: AlertController
   ) {}
 
   ngOnInit() {

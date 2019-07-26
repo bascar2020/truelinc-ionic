@@ -1,1 +1,6 @@
-<ion-searchbar (ionChange)="handleSearch($event)" animated></ion-searchbar>
+<ion-searchbar  *ngIf="isSearchbarOpened" showCancelButton='true' placeholder='filter' (ionChange)="handleSearch($event)" (ionCancel)="isSearchbarOpened=false" ></ion-searchbar>
+  
+        <ion-button  fill="clear" icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
+            <ion-icon name="funnel"></ion-icon>
+        </ion-button>
+    

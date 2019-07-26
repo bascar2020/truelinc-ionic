@@ -66,18 +66,20 @@
                 
                 
 
-                <ion-item class="tag">
-                    <ion-col size="12">
-                    <ion-label>Tags</ion-label>
-                </ion-col>
-            </ion-item>
+          
+            <ion-list-header>Tags</ion-list-header>
+                <p>
+                    <ion-chip outline color="primary" #chip *ngFor="let tag of tagArray; let i = index">
+                        <ion-label>{{tag}}</ion-label>
+                        <ion-icon name="close-circle" (click)="remove(i)"></ion-icon>
+                    </ion-chip>
+                </p>
                 <ion-item>
-                     <ion-chip>
-                        
-                        <ion-label>Icon Chip</ion-label>
-                        <ion-icon name="close"></ion-icon>
-                      </ion-chip>
-                </ion-item>
+                    <div class="ion-chip-group">
+                      <ion-input formControlName="tagValue" (keyup)="onKey($event)" placeholder="Agg Tag.."></ion-input>
+                    </div>
+                  </ion-item>
+                
                 
 
         <ion-item >

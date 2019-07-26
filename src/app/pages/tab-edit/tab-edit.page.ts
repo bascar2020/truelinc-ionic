@@ -22,6 +22,8 @@ export class TabEditPage implements OnInit {
   options: any;
   miTarjeta: Tarjeta;
   objetoTarjeta: any;
+  tagArray = [];
+
   constructor(
     private tarjetaService: TarjetaService,
     private router: Router,
@@ -85,7 +87,8 @@ ngOnInit() {
                         '',
                         [Validators.pattern(pattern)]
                     ],
-                    privada: false
+                    privada: false,
+                    tagValue: []
                 });
 
     this.storage
@@ -138,11 +141,27 @@ ngOnInit() {
           this.editarForm.get('instagram').setValue(this.miTarjeta.instagram);
           this.editarForm.get('web').setValue(this.miTarjeta.www);
           this.editarForm.get('privada').setValue(this.miTarjeta.privade);
+          this.tagArray = this.miTarjeta.tags;
         });
         }, (error) => {
             console.error(error);
         });
 }
+
+    remove(id: number): void {
+      this.tagArray.splice(id, 1);
+    }
+    onKey(event: any) {
+      if (event.keyCode === 13 || event.keyCode === 188 || event.keyCode === 32) {
+        const newTag: string = event.target.value.trim().replace(/,/g, '');
+        if (this.tagArray.indexOf(newTag) === -1) {
+          this.tagArray.push(newTag);
+        }else{
+          this.presentToast('Tag repetido');
+        }
+        this.editarForm.get('tagValue').setValue('');
+      }
+    }
   async onSubmit() {
 
     this.loadingService.presentLoading();
@@ -157,6 +176,7 @@ ngOnInit() {
               this.objetoTarjeta.set('facebook', this.editarForm.value.facebook);
               this.objetoTarjeta.set('instagram', this.editarForm.value.instagram);
               this.objetoTarjeta.set('www', this.editarForm.value.web);
+              this.objetoTarjeta.set('tags', this.tagArray);
               await this.objetoTarjeta.save();
       this.loadingService.dissminsLoading();
   }
