@@ -32,6 +32,7 @@ export class AppComponent {
 
       Parse.initialize(`${c.YOUR_APP_ID}`, `${c.YOUR_JAVASCRIPT_KEY}`);
       Parse.serverURL = `${c.YOUR_PARSE_SERVER}`;
+      Parse.enableLocalDatastore();
       Parse.User.currentAsync().then(user => {
         if (user) {
           this.storage.set('currentUser', user.toJSON())

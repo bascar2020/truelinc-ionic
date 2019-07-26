@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Parse } from 'parse';
-import { Storage } from '@ionic/storage';
 import { Tarjeta, TarjetaDeck } from '../models/tarjeta.model';
 import { Observable, of , from} from 'rxjs';
 
@@ -13,23 +12,14 @@ import { Observable, of , from} from 'rxjs';
 })
 export class TarjetaService {
 
-  constructor(
-    private storage: Storage) {}
+  constructor() {}
 
-    public getTarjetasCurrentUser(): Observable < Parse.Object[] > {
-      return from (this.storage.get('currentUser').then(
-        (val) => {
+    public getTarjetasCurrentUser(): Observable < Parse.Object> {
           const Tarjetas = Parse.Object.extend('Tarjetas');
           const query = new Parse.Query(Tarjetas);
-          query.containedIn('objectId', val.tarjetas);
+          query.containedIn('objectId', Parse.User.current().get('tarjetas'));
           query.descending('Empresa');
-          return (query.find());
-        },
-        (error) => {
-          console.error(error);
-        },
-      )
-      );
+          return from(query.find());
     }
 
     public getTargetasById(id: String): Observable<Parse.Object> {
@@ -58,8 +48,7 @@ export class TarjetaService {
 
     public async getStateTarjeta(id: String) {
 
-      const response = await this.storage.get('currentUser');
-      const data = response.tarjetas.find(x => x === id);
-      return data ? true : false ;
+      const response = Parse.User.current().get('tarjetas').find(x => x === id);
+      return response ? true : false ;
     }
 }

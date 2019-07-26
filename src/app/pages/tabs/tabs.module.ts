@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { TabsRoutingModule } from './tabs.router.module';
 import { TabsPage } from './tabs.page';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @NgModule({
   imports: [
@@ -13,6 +14,9 @@ import { TabsPage } from './tabs.page';
     IonicModule,
     TabsRoutingModule,
   ],
-  declarations: [TabsPage]
+  declarations: [TabsPage],
+  providers: [
+    BarcodeScanner,
+  ]
 })
 export class TabsPageModule {}

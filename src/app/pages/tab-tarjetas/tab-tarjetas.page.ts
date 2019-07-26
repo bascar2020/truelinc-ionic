@@ -41,7 +41,7 @@ export class TabTarjetasPage implements OnInit {
       this.loadingService.dissminsLoading();
     }, () => {
       this.loadingService.dissminsLoading();
-      this.toast.presentErrorToast('Error al optener tus cartas');
+      this.toast.presentErrorToast('Error al obtener tus tarjetas');
     });
   }
 

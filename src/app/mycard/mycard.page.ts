@@ -4,6 +4,7 @@ import { TarjetaService } from '../services/tarjeta.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoaderService } from '../services/loader.service';
 import { AlertController } from '@ionic/angular';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class MycardPage implements OnInit {
     private tarjetaService: TarjetaService,
     private activeRoute: ActivatedRoute,
     private loadingService: LoaderService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private userService: UserService,
   ) {}
 
   ngOnInit() {
@@ -91,6 +93,7 @@ export class MycardPage implements OnInit {
       this.btnFollow = 'danger';
       this.btnFollowText = 'Dejar de seguir';
       this.isFollowing = true;
+      this.userService.followTarjeta(this.activeRoute.snapshot.paramMap.get('id'));
     }
   }
 
@@ -113,6 +116,7 @@ export class MycardPage implements OnInit {
             this.btnFollow = 'primary';
           this.btnFollowText = 'Seguir tarjeta';
           this.isFollowing = false;
+          this.userService.unfollowTarjeta(this.activeRoute.snapshot.paramMap.get('id'));
           }
         }
       ]

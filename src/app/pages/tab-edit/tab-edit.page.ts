@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Parse } from 'parse';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { LoaderService } from 'src/app/services/loader.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import { TarjetaService } from 'src/app/services/tarjeta.service';
 import { Tarjeta } from 'src/app/models/tarjeta.model';
 
 @Component({
@@ -25,10 +23,8 @@ export class TabEditPage implements OnInit {
   tagArray = [];
 
   constructor(
-    private tarjetaService: TarjetaService,
     private router: Router,
     private toastCtrl: ToastController,
-    private storage: Storage,
     private formBuilder: FormBuilder,
     private loadingService: LoaderService,
     private imagePicker: ImagePicker,
@@ -90,62 +86,50 @@ ngOnInit() {
                     privada: false,
                     tagValue: []
                 });
-
-    this.storage
-        .get('currentUser')
-        .then(async (val) => {
-         await this.tarjetaService.getTargetasById(val.mi_tarjeta.objectId).subscribe(t => {
-            t = t[0];
-            this.objetoTarjeta = t;
-            this.miTarjeta = t;
-            this.miTarjeta = {
-              id: t.id,
-              nombre: t.get('Nombre').toString(),
-              empresa: t.get('Empresa'),
-              cargo: t.get('Cargo'),
-              logo:
-                t.get('LogoEmpresa') === undefined
-                  ? 'assets/img/noImage.jpg'
-                  : t.get('LogoEmpresa').url(),
-              foto:
-                t.get('Foto') === undefined
-                  ? 'assets/img/noImage.jpg'
-                  : t.get('Foto').url(),
-              facebook: t.get('facebook'),
-              generalRate: t.get('generalRate'),
-              twit: t.get('Twit'),
-              privade: t.get('Privada'),
-              telefono: t.get('Telefono'),
-              www: t.get('www'),
-              ciudad: t.get('Ciudad'),
-              tags: t.get('tags'),
-              email: t.get('Email'),
-              qr:
-                t.get('QR') === undefined
-                  ? 'assets/img/no-qr.png'
-                  : t.get('QR').url(),
-              geopoint: t.get('GeoPoint'),
-              twiter: t.get('twiter'),
-              direccion: t.get('Direccion'),
-              instagram: t.get('instagram')
-            };
-
-          this.editarForm.get('empresa').setValue(this.miTarjeta.empresa);
-          this.editarForm.get('nombre').setValue(this.miTarjeta.nombre);
-          this.editarForm.get('cargo').setValue(this.miTarjeta.cargo);
-          this.editarForm.get('twit').setValue(this.miTarjeta.twit);
-          this.editarForm.get('telefono').setValue(this.miTarjeta.telefono);
-          this.editarForm.get('direccion').setValue(this.miTarjeta.direccion);
-          this.editarForm.get('correo').setValue(this.miTarjeta.email);
-          this.editarForm.get('facebook').setValue(this.miTarjeta.facebook);
-          this.editarForm.get('instagram').setValue(this.miTarjeta.instagram);
-          this.editarForm.get('web').setValue(this.miTarjeta.www);
-          this.editarForm.get('privada').setValue(this.miTarjeta.privade);
-          this.tagArray = this.miTarjeta.tags;
-        });
-        }, (error) => {
-            console.error(error);
-        });
+                  const t = Parse.User.current().get('mi_tarjeta');
+                  this.miTarjeta = {
+                    id: t.id,
+                    nombre: t.get('Nombre').toString(),
+                    empresa: t.get('Empresa'),
+                    cargo: t.get('Cargo'),
+                    logo:
+                      t.get('LogoEmpresa') === undefined
+                        ? 'assets/img/noImage.jpg'
+                        : t.get('LogoEmpresa').url(),
+                    foto:
+                      t.get('Foto') === undefined
+                        ? 'assets/img/noImage.jpg'
+                        : t.get('Foto').url(),
+                    facebook: t.get('facebook'),
+                    generalRate: t.get('generalRate'),
+                    twit: t.get('Twit'),
+                    privade: t.get('Privada'),
+                    telefono: t.get('Telefono'),
+                    www: t.get('www'),
+                    ciudad: t.get('Ciudad'),
+                    tags: t.get('tags'),
+                    email: t.get('Email'),
+                    qr:
+                      t.get('QR') === undefined
+                        ? 'assets/img/no-qr.png'
+                        : t.get('QR').url(),
+                    geopoint: t.get('GeoPoint'),
+                    twiter: t.get('twiter'),
+                    direccion: t.get('Direccion'),
+                    instagram: t.get('instagram')
+                  };
+                  this.editarForm.get('empresa').setValue(this.miTarjeta.empresa);
+                  this.editarForm.get('nombre').setValue(this.miTarjeta.nombre);
+                  this.editarForm.get('cargo').setValue(this.miTarjeta.cargo);
+                  this.editarForm.get('twit').setValue(this.miTarjeta.twit);
+                  this.editarForm.get('telefono').setValue(this.miTarjeta.telefono);
+                  this.editarForm.get('direccion').setValue(this.miTarjeta.direccion);
+                  this.editarForm.get('correo').setValue(this.miTarjeta.email);
+                  this.editarForm.get('facebook').setValue(this.miTarjeta.facebook);
+                  this.editarForm.get('instagram').setValue(this.miTarjeta.instagram);
+                  this.editarForm.get('web').setValue(this.miTarjeta.www);
+                  this.editarForm.get('privada').setValue(this.miTarjeta.privade);
+                  this.tagArray = this.miTarjeta.tags;
 }
 
     remove(id: number): void {
@@ -156,7 +140,7 @@ ngOnInit() {
         const newTag: string = event.target.value.trim().replace(/,/g, '');
         if (this.tagArray.indexOf(newTag) === -1) {
           this.tagArray.push(newTag);
-        }else{
+        } else {
           this.presentToast('Tag repetido');
         }
         this.editarForm.get('tagValue').setValue('');
@@ -165,26 +149,25 @@ ngOnInit() {
   async onSubmit() {
 
     this.loadingService.presentLoading();
-              this.objetoTarjeta.set('Empresa', this.editarForm.value.empresa);
-              this.objetoTarjeta.set('Nombre', this.editarForm.value.nombre);
-              this.objetoTarjeta.set('Privada', this.editarForm.value.privada);
-              this.objetoTarjeta.set('Direccion', this.editarForm.value.direccion);
-              this.objetoTarjeta.set('Telefono', this.editarForm.value.telefono);
-              this.objetoTarjeta.set('Email', this.editarForm.value.correo);
-              this.objetoTarjeta.set('Cargo', this.editarForm.value.cargo);
-              this.objetoTarjeta.set('Twit', this.editarForm.value.twit);
-              this.objetoTarjeta.set('facebook', this.editarForm.value.facebook);
-              this.objetoTarjeta.set('instagram', this.editarForm.value.instagram);
-              this.objetoTarjeta.set('www', this.editarForm.value.web);
-              this.objetoTarjeta.set('tags', this.tagArray);
-              await this.objetoTarjeta.save();
+              Parse.User.current().get('mi_tarjeta').set('Empresa', this.editarForm.value.empresa);
+              Parse.User.current().get('mi_tarjeta').set('Nombre', this.editarForm.value.nombre);
+              Parse.User.current().get('mi_tarjeta').set('Privada', this.editarForm.value.privada);
+              Parse.User.current().get('mi_tarjeta').set('Direccion', this.editarForm.value.direccion);
+              Parse.User.current().get('mi_tarjeta').set('Telefono', this.editarForm.value.telefono);
+              Parse.User.current().get('mi_tarjeta').set('Email', this.editarForm.value.correo);
+              Parse.User.current().get('mi_tarjeta').set('Cargo', this.editarForm.value.cargo);
+              Parse.User.current().get('mi_tarjeta').set('Twit', this.editarForm.value.twit);
+              Parse.User.current().get('mi_tarjeta').set('facebook', this.editarForm.value.facebook);
+              Parse.User.current().get('mi_tarjeta').set('instagram', this.editarForm.value.instagram);
+              Parse.User.current().get('mi_tarjeta').set('www', this.editarForm.value.web);
+              Parse.User.current().get('mi_tarjeta').set('tags', this.tagArray);
+              await Parse.User.current().get('mi_tarjeta').save();
       this.loadingService.dissminsLoading();
   }
 
   logOut() {
     Parse.User.logOut().then((resp) => {
       console.log('Logged out successfully', resp);
-      this.storage.set('currentUser', null);
       this.router.navigateByUrl('/');
     }, err => {
       console.log('Error logging out', err);
