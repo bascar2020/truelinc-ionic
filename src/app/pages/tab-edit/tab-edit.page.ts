@@ -6,6 +6,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { LoaderService } from 'src/app/services/loader.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Tarjeta } from 'src/app/models/tarjeta.model';
+import { FileSaver } from '@ionic-native/file/ngx';
 
 @Component({
   selector: 'app-tab-edit',
@@ -16,11 +17,12 @@ export class TabEditPage implements OnInit {
 
   editarForm: FormGroup;
   objectId: String;
-  imageResponse: any;
+  logoBase64: String;
+  fotoBase64: String;
   options: any;
   miTarjeta: Tarjeta;
   objetoTarjeta: any;
-  tagArray = [];
+  tagArray: string[] = [];
 
   constructor(
     private router: Router,
@@ -129,7 +131,7 @@ ngOnInit() {
                   this.editarForm.get('instagram').setValue(this.miTarjeta.instagram);
                   this.editarForm.get('web').setValue(this.miTarjeta.www);
                   this.editarForm.get('privada').setValue(this.miTarjeta.privade);
-                  this.tagArray = this.miTarjeta.tags;
+                  this.tagArray = (!this.miTarjeta.tags ? [] : this.miTarjeta.tags);
 }
 
     remove(id: number): void {
@@ -138,6 +140,7 @@ ngOnInit() {
     onKey(event: any) {
       if (event.keyCode === 13 || event.keyCode === 188 || event.keyCode === 32) {
         const newTag: string = event.target.value.trim().replace(/,/g, '');
+
         if (this.tagArray.indexOf(newTag) === -1) {
           this.tagArray.push(newTag);
         } else {
@@ -160,7 +163,7 @@ ngOnInit() {
               Parse.User.current().get('mi_tarjeta').set('facebook', this.editarForm.value.facebook);
               Parse.User.current().get('mi_tarjeta').set('instagram', this.editarForm.value.instagram);
               Parse.User.current().get('mi_tarjeta').set('www', this.editarForm.value.web);
-              Parse.User.current().get('mi_tarjeta').set('tags', this.tagArray);
+              Parse.User.current().get('mi_tarjeta').addAllUnique('tags', this.tagArray);
               await Parse.User.current().get('mi_tarjeta').save();
       this.loadingService.dissminsLoading();
   }
@@ -181,20 +184,21 @@ ngOnInit() {
     return await toast.present();
   }
 
-  getImages() {
+  getLogo() {
+    
     this.options = {
       // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
       // selection of a single image, the plugin will return it.
-      // maximumImagesCount: 3,
+       maximumImagesCount: 1,
       // max width and height to allow the images to be.  Will keep aspect
       // ratio no matter what.  So if both are 800, the returned image
       // will be at most 800 pixels wide and 800 pixels tall.  If the width is
       // 800 and height 0 the image will be 800 pixels wide if the source
       // is at least that wide.
-      width: 200,
-      // height: 200,
+      width: 400,
+      height: 400,
       // quality of resized image, defaults to 100
-      quality: 25,
+      quality: 100,
 
       // output type, defaults to FILE_URIs.
       // available options are
@@ -202,14 +206,69 @@ ngOnInit() {
       // window.imagePicker.OutputType.BASE64_STRING (1)
       outputType: 1
     };
-    this.imageResponse = [];
-    this.imagePicker.getPictures(this.options).then((results) => {
+    this.loadingService.presentLoading();
+    this.imagePicker.getPictures(this.options).then(async (results) => {
       for (let i = 0; i < results.length; i++) {
-        this.imageResponse.push('data:image/jpeg;base64,' + results[i]);
+        this.miTarjeta.logo = ('data:image/jpeg;base64,' + results[i]);
+        this.logoBase64 = results[i];
       }
-    }, (err) => {
-      alert(err);
-    });
+      console.log('llegue aca');
+      const file = new Parse.File('logo.jpg', { base64: this.logoBase64 });
+      await file.save();
+      Parse.User.current().get('mi_tarjeta').set('LogoEmpresa', file);
+      await Parse.User.current().get('mi_tarjeta').save().then(function(gameTurnAgain) {
+        console.log('Se actualizo la el logo');
+        this.presentToast('Logo actualizado');
+        this.loadingService.dissminsLoading();
+        }, function(error) {
+          console.log(error);
+          this.loadingService.dissminsLoading();
+        });
+      }, (err) => {console.log(err); });
+  }
+
+  getFoto() {
+
+    this.options = {
+      // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
+      // selection of a single image, the plugin will return it.
+       maximumImagesCount: 1,
+      // max width and height to allow the images to be.  Will keep aspect
+      // ratio no matter what.  So if both are 800, the returned image
+      // will be at most 800 pixels wide and 800 pixels tall.  If the width is
+      // 800 and height 0 the image will be 800 pixels wide if the source
+      // is at least that wide.
+      width: 600,
+      height: 400,
+      // quality of resized image, defaults to 100
+      quality: 100,
+
+      // output type, defaults to FILE_URIs.
+      // available options are
+      // window.imagePicker.OutputType.FILE_URI (0) or
+      // window.imagePicker.OutputType.BASE64_STRING (1)
+      outputType: 1
+    };
+    this.loadingService.presentLoading();
+    this.imagePicker.getPictures(this.options).then(async (results) => {
+      for (let i = 0; i < results.length; i++) {
+        this.fotoBase64 =  results[i];
+        this.miTarjeta.foto = ('data:image/jpeg;base64,' + results[i]);
+      }
+      console.log('llegue aca');
+      const file = new Parse.File('logo.jpg', { base64: this.fotoBase64 });
+      await file.save();
+      Parse.User.current().get('mi_tarjeta').set('Foto', file);
+      await Parse.User.current().get('mi_tarjeta').save().then(function(gameTurnAgain) {
+        console.log('Se actualizo la Foto');
+        this.presentToast('Foto actualizada');
+        this.loadingService.dissminsLoading();
+        }, function(error) {
+          console.log(error);
+          this.loadingService.dissminsLoading();
+        });
+      }, (err) => {console.log(err); });
+
   }
 
 

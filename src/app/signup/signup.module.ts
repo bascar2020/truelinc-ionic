@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { SignupPage } from './signup.page';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { Base64 } from '@ionic-native/base64/ngx';
+
 
 const routes: Routes = [
   {
@@ -26,8 +26,7 @@ const routes: Routes = [
   ],
   declarations: [SignupPage],
   providers: [
-    BarcodeScanner,
-    Base64,
+    BarcodeScanner
   ]
 })
 export class SignupPageModule {}

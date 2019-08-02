@@ -6,7 +6,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { LoaderService } from '../services/loader.service';
 import { Storage } from '@ionic/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { Base64 } from '@ionic-native/base64/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 @Component({
   selector: 'app-signup',
@@ -23,7 +23,7 @@ export class SignupPage implements OnInit {
     private loadingService: LoaderService,
     private storage: Storage,
     private barcodeScanner: BarcodeScanner,
-    private base64: Base64
+    private file: File
   ) {
 
   }
@@ -36,7 +36,7 @@ export class SignupPage implements OnInit {
       telefono: ['', [ Validators.required, Validators.pattern('^[0-9]*$')]],
       direccion: ['', [ Validators.required]],
       correo: ['', [ Validators.required, Validators.email]],
-      password: ['', [ Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,20}$')]],
+      password: ['', [ Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.,|¿]).{8,20}$')]],
     });
   }
 
@@ -57,20 +57,23 @@ export class SignupPage implements OnInit {
             tarjetaUser.set('Cargo', this.validations_form.value.cargo);
             await tarjetaUser.save();
             resp.set('mi_tarjeta', tarjetaUser);
+            resp.set('email', this.validations_form.value.correo);
+            resp.set('tarjetas', [tarjetaUser.id]);
             await resp.save();
             // Clears up the form
-            await this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, `truelinc+:+${tarjetaUser.id}`)
+            await this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, `truelinc + : + ${tarjetaUser.id}`)
             .then((encodedData) => {
-
-                const filePath: string = encodedData['file'];
-                this.base64.encodeFile(filePath).then((base64File: string) => {
-                  const parseFile = new Parse.File(`${resp.id}.jpg`, base64File);
-                  tarjetaUser.set('QR', parseFile);
-                }, (err) => {
+                const nameFile: string = encodedData['file'].split('/').pop();
+                this.file.readAsDataURL(this.file.tempDirectory, nameFile)
+                .then(base64File => {
+                  tarjetaUser.set('QR', new Parse.File(`${resp.id}.jpg`, { base64: base64File }));
+                  tarjetaUser.save();
+                })
+                .catch(() => {
+                    console.log('Error reading file');
                 });
-            }, (err) => {
-            });
-            await tarjetaUser.save();
+            }, (err) => {}
+            );
             this.toast.presentToast('successfully');
             this.storage.set('currentUser', resp.toJSON());
             this.router.navigateByUrl('/home');
@@ -85,7 +88,6 @@ export class SignupPage implements OnInit {
   onSubmit() {
    // console.log(this.validations_form.value);
     this.signUp();
-
     // TODO get form group value & handle submission
   }
 
