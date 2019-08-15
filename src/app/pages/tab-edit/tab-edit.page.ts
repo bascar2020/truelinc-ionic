@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Parse } from 'parse';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController} from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { LoaderService } from 'src/app/services/loader.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Tarjeta } from 'src/app/models/tarjeta.model';
-import { FileSaver } from '@ionic-native/file/ngx';
+
 
 @Component({
   selector: 'app-tab-edit',
@@ -30,6 +30,7 @@ export class TabEditPage implements OnInit {
     private formBuilder: FormBuilder,
     private loadingService: LoaderService,
     private imagePicker: ImagePicker,
+    public navCtrl: NavController
   ) { }
 
 ngOnInit() {
@@ -163,7 +164,7 @@ ngOnInit() {
               Parse.User.current().get('mi_tarjeta').set('facebook', this.editarForm.value.facebook);
               Parse.User.current().get('mi_tarjeta').set('instagram', this.editarForm.value.instagram);
               Parse.User.current().get('mi_tarjeta').set('www', this.editarForm.value.web);
-              Parse.User.current().get('mi_tarjeta').addAllUnique('tags', this.tagArray);
+              Parse.User.current().get('mi_tarjeta').set('tags', this.tagArray);
               await Parse.User.current().get('mi_tarjeta').save();
       this.loadingService.dissminsLoading();
   }
@@ -185,7 +186,7 @@ ngOnInit() {
   }
 
   getLogo() {
-    
+
     this.options = {
       // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
       // selection of a single image, the plugin will return it.
@@ -212,12 +213,10 @@ ngOnInit() {
         this.miTarjeta.logo = ('data:image/jpeg;base64,' + results[i]);
         this.logoBase64 = results[i];
       }
-      console.log('llegue aca');
       const file = new Parse.File('logo.jpg', { base64: this.logoBase64 });
       await file.save();
       Parse.User.current().get('mi_tarjeta').set('LogoEmpresa', file);
       await Parse.User.current().get('mi_tarjeta').save().then(function(gameTurnAgain) {
-        console.log('Se actualizo la el logo');
         this.presentToast('Logo actualizado');
         this.loadingService.dissminsLoading();
         }, function(error) {
@@ -255,7 +254,6 @@ ngOnInit() {
         this.fotoBase64 =  results[i];
         this.miTarjeta.foto = ('data:image/jpeg;base64,' + results[i]);
       }
-      console.log('llegue aca');
       const file = new Parse.File('logo.jpg', { base64: this.fotoBase64 });
       await file.save();
       Parse.User.current().get('mi_tarjeta').set('Foto', file);
@@ -269,6 +267,10 @@ ngOnInit() {
         });
       }, (err) => {console.log(err); });
 
+  }
+
+  goMap() {
+    this.router.navigateByUrl('/home/tabs/edit/maps');
   }
 
 

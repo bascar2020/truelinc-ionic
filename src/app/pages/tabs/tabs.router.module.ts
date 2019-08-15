@@ -49,6 +49,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../tab-edit/tab-edit.module#TabEditPageModule'
+          },
+          {
+            path: 'maps',
+            loadChildren: '../../maps/maps.module#MapsPageModule'
           }
         ]
       },

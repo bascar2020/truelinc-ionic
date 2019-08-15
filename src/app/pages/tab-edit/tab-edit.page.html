@@ -174,7 +174,10 @@
                                 <h6>La privacidad de la tarjeta genera un costo adicional</h6> 
                           </div>
                 </ion-item>
-                
+                <ion-item >
+                  <ion-button class="btn-item" color="tertiary" (click)="goMap()" size="large" expand="full" >Geoposition</ion-button>
+                </ion-item>
+
               <ion-item >
             <ion-button type='submit' [disabled]="!editarForm.valid" class="btn-item" expand="full" >GUARDAR CAMBIOS</ion-button>
           </ion-item>

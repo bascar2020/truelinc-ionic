@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+    <ion-title>Maps</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <agm-map *ngIf = "geoposition"
+    [latitude]="geoposition.coords.latitude"
+    [longitude]="geoposition.coords.longitude"
+    [zoom]="10"
+    [mapTypeId]="'roadmap'">
+
+    <agm-marker
+      *ngFor="let m of markers; let i = index"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label">
+    </agm-marker>
+  </agm-map> 
+</ion-content>
