@@ -12,6 +12,9 @@ ion-content{
     margin-left: -50%;
 }
 
+.mail{
+    text-transform: lowercase;
+}
 
 
 .btn-red{
@@ -104,6 +107,10 @@ ion-content{
     width: 100%;
 }
 
+.texto{
+   color: #a8a8a8;
+}
+
 #red{
     height: 48px;
 }
@@ -147,6 +154,14 @@ h5{
 
 h6{
     font-size: 12px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding-bottom:3px;
+    color: #5d5d5d;
+
+}
+h7{
+    font-size: 10px;
     margin-top: 3px;
     margin-bottom: 3px;
     padding-bottom:3px;

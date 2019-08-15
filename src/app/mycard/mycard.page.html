@@ -24,25 +24,53 @@
                       
 
    
-    
+                            <div text-center>
+                                    <h5 class="texto"><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Nombre</h5>
+                                </div>
+                          
             <ion-item >
+
                 <div id="tweet" text-center>
                     <h5>{{miTarjeta?.nombre}}</h5>
                 </div>
             </ion-item>
-            
+
+                    
+            <div text-center>
+                    <h5 class="texto"> <ion-icon ios="ios-briefcase" md="md-briefcase"></ion-icon>Empresa</h5>
+                </div>
             <ion-item>
+                    
                 <div text-center id="tweet">
                 <h5>{{miTarjeta?.empresa}}</h5>
             </div>
-            
             </ion-item>
 
+            <div text-center>
+                    <h5 class="texto"><ion-icon ios="ios-ribbon" md="md-ribbon"></ion-icon>Cargo</h5>
+                </div>
+
+            <ion-item>
+            
+            <div text-center id="tweet">
+            <h5>{{miTarjeta?.empresa}}</h5>
+        </div>
+        </ion-item>
+
+        
+        <div text-center>
+                <h5 class="texto"><ion-icon ios="ios-text" md="md-text"></ion-icon>Mensaje</h5>
+            </div>
               <ion-item>
                 <div text-center id="tweet">
                   <h5>{{miTarjeta?.twit}}</h5>
                 </div>
             </ion-item>
+
+            <div text-center>
+                    <h5 class="texto">  <ion-icon ios="ios-globe" md="md-globe"></ion-icon>
+                        Mis redes</h5>
+                </div>
             
 
               <ion-item class="redes" item-end >
@@ -95,7 +123,7 @@
                             <ion-img  src="assets/img/mail.png"></ion-img>
                         </ion-thumbnail>
                       </ion-col>
-                      <ion-text>Correo: <a href="mailto:{{miTarjeta?.email}}"><h5>{{miTarjeta?.email}}</h5></a></ion-text>
+                      <ion-text>Correo: <a href="mailto:{{miTarjeta?.email}}"><h5 class="mail">{{miTarjeta?.email}}</h5></a></ion-text>
                   </ion-item>
                 <ion-item id="datos">
     

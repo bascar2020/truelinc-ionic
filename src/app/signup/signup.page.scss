@@ -1,6 +1,6 @@
 
 ion-content,ion-item,ion-list,ion-item-background,ion-background-color,list-md {
-    --background: #faf9f8;}
+    --background: #fff;}
 
 
 ion-list{
@@ -13,6 +13,18 @@ ion-button{
     height: 100%;
     --background: transparent;
     overflow: var(--overflow);
+}
+
+ion-img{
+
+    width: 50%;
+    height: 50%;
+    margin-left: 25%;
+}
+
+ion-icon{
+    color: #a8a8a8;
+    margin-right: 4px;
 }
 
 #img-user{
