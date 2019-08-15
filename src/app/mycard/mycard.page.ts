@@ -99,7 +99,7 @@ export class MycardPage implements OnInit {
 
   private async presentAlertConfirm() {
     const alert = await this.alertController.create({
-      header: 'Confirm!',
+      header: 'Confirmar!',
       message: '¿desea elminar la tarjeta?',
       buttons: [
         {
@@ -107,20 +107,22 @@ export class MycardPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+            console.log('Confirmar Cancel: blah');
           }
         }, {
-          text: 'Okay',
+          text: 'Ok',
           handler: () => {
-            console.log('Confirm Okay');
+            console.log('Confirmar Okay');
             this.btnFollow = 'primary';
           this.btnFollowText = 'Seguir tarjeta';
           this.isFollowing = false;
+          alert.dismiss();
           this.userService.unfollowTarjeta(this.activeRoute.snapshot.paramMap.get('id'));
           }
         }
       ]
     });
     await alert.present();
+
   }
 }

@@ -97,7 +97,7 @@
                         <ion-img src="assets/img/phone.png"></ion-img>
                     </ion-thumbnail>
                   </ion-col>
-                  <ion-text>Telefono:<a href="tel:+{{miTarjeta?.telefono}}"><h5>{{miTarjeta?.telefono}}</h5></a></ion-text>
+                  <ion-text>Telefono:<a href="tel:+{{miTarjeta?.telefono}}"><h5>+({{miTarjeta?.telefono.slice(0,2)}}) {{miTarjeta?.telefono.slice(2,-1)}}</h5></a></ion-text>
               </ion-item>
               <ion-item id="datos" >
                   <ion-col size="3">
