@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
-
+import { MouseEvent } from '@agm/core';
+import { Parse } from 'parse';
+import { LoaderService } from 'src/app/services/loader.service';
+import { Location } from '@angular/common';
 export interface Marker {
   lat?: number;
   lng?: number;
@@ -15,33 +18,50 @@ export interface Marker {
 
 export class MapsPage implements OnInit {
   geoposition: Geoposition;
-  currentMarket: Marker;
-  markers: Array<Marker> = [];
+  lat = 4.640071;
+  lng = -74.0719561;
 
   constructor(
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private loadingService: LoaderService,
+    private location: Location,
   ) { }
 
   ngOnInit() {
-    this.getMyLocation();
-    // this.currentMarket.label = 'Localizando ...';
-    // this.currentMarket.lat = 4.640071;
-    // this.currentMarket.lng = -74.0719561;
-   // this.markers = [this.currentMarket] || [];
+    if ( Parse.User.current().get('mi_tarjeta').get('GeoPoint') != null) {
+      const punto = Parse.User.current().get('mi_tarjeta').get('GeoPoint').toJSON();
+      this.lat = punto.latitude;
+      this.lng = punto.longitude;
+    } else {
+      this.getMyLocation();
+    }
   }
+
+  mapClicked($event: MouseEvent) {
+    console.log(MouseEvent);
+      this.lat = $event.coords.lat;
+      this.lng = $event.coords.lng;
+  }
+
   getMyLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude;
-      // resp.coords.longitude;
       console.log('Current Position', resp.coords);
       this.geoposition = resp;
-      console.log(this.geoposition);
-      // this.currentMarket.lat = resp.coords.latitude;
-      // this.currentMarket.lng = resp.coords.longitude;
+      this.lat = resp.coords.latitude;
+      this.lng = resp.coords.longitude;
 
      }).catch((error) => {
        console.log('Error getting location', error);
      });
+  }
+
+  async onSave() {
+    this.loadingService.presentLoading();
+    const point = new Parse.GeoPoint({latitude: this.lat, longitude: this.lng});
+    Parse.User.current().get('mi_tarjeta').set('GeoPoint', point);
+    await Parse.User.current().get('mi_tarjeta').save();
+    this.loadingService.dissminsLoading();
+    this.location.back();
   }
 
 

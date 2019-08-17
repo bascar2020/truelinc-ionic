@@ -8,17 +8,24 @@
 </ion-header>
 
 <ion-content>
-  <agm-map *ngIf = "geoposition"
-    [latitude]="geoposition.coords.latitude"
-    [longitude]="geoposition.coords.longitude"
-    [zoom]="10"
-    [mapTypeId]="'roadmap'">
+  <agm-map 
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="15"
+    [mapTypeId]="'roadmap'"
+    (mapClick)="mapClicked($event)"
+    [streetViewControl]="false">
 
     <agm-marker
-      *ngFor="let m of markers; let i = index"
-      [latitude]="m.lat"
-      [longitude]="m.lng"
-      [label]="m.label">
+      [latitude]="lat"
+      [longitude]="lng">
     </agm-marker>
   </agm-map> 
+  
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed" >
+      <ion-fab-button color="dark">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 </ion-content>

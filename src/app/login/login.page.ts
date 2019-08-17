@@ -3,13 +3,14 @@ import {Router} from '@angular/router';
 import {Parse} from 'parse';
 import { ToastService } from '../services/toast.service';
 import { Storage } from '@ionic/storage';
-
+import { version } from '../../../package.json';
 @Component(
     {selector: 'app-login', templateUrl: './login.page.html', styleUrls: ['./login.page.scss']}
 )
 export class LoginPage implements OnInit {
   private username: string;
   private password: string;
+  public version: string = version;
     constructor(
       private router: Router,
       private toast: ToastService,

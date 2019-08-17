@@ -162,7 +162,7 @@
                           <h5 style= "text-align: center;">Dale click y localiza tu posicion</h5>
                          
                            <ion-item>
-                                <ion-button><ion-img src="assets/img/maps.jpeg"></ion-img></ion-button> 
+                                <ion-button (click)="goMap()"><ion-img src="assets/img/maps.jpeg"></ion-img></ion-button> 
 
                             </ion-item>
 
@@ -181,18 +181,22 @@
                                 <h6>La privacidad de la tarjeta genera un costo adicional</h6> 
                           </div>
                 </ion-item>
-                <ion-item >
-                  <ion-button class="btn-item" color="tertiary" (click)="goMap()" size="large" expand="full" >Geoposition</ion-button>
-                </ion-item>
+                
 
               <ion-item >
-            <ion-button type='submit' [disabled]="!editarForm.valid" class="btn-item" expand="full" >GUARDAR CAMBIOS</ion-button>
+            <ion-button type='submit' [disabled]="!editarForm.valid" class="btn-item" expand="full" >
+                <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+                Guardar Cambios
+              </ion-button>
           </ion-item>
 
           
           
             <div  text-center>
-              <ion-button class="btn-item" color="danger" (click)="logOut()" size="large" expand="full" >Log out</ion-button>
+              <ion-button class="btn-item" color="danger" (click)="logOut()" size="large" expand="full" >
+                  <ion-icon slot="start" name="power"></ion-icon>
+                  Cerrar Sesion
+                </ion-button>
             </div>
         </form>
   </ion-content>
