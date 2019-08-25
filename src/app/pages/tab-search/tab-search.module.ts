@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TabSearchPage } from './tab-search.page';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   imports: [
@@ -14,6 +14,9 @@ import { TabSearchPage } from './tab-search.page';
     FormsModule,
     IonicModule,
     RouterModule.forChild([{ path: '', component: TabSearchPage }])
+  ],
+  providers: [
+    Geolocation
   ],
   declarations: [TabSearchPage]
 })

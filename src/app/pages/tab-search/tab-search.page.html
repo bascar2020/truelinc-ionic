@@ -22,7 +22,7 @@
         </ion-segment>
 
     
-      <ion-searchbar  showCancelButton (ionInput)="searchTarjetas($event)"></ion-searchbar>
+      <ion-searchbar  showCancelButton debounce="500" (ionInput)="searchTarjetas($event)"></ion-searchbar>
 
    
 
