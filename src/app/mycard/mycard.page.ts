@@ -81,7 +81,8 @@ export class MycardPage implements OnInit {
         geopoint: t.get('GeoPoint'),
         twiter: t.get('twiter'),
         direccion: t.get('Direccion'),
-        instagram: t.get('instagram')
+        instagram: t.get('instagram'),
+        linkedin: t.get('Linkedin')
       };
       this.loadingService.dissminsLoading();
     });

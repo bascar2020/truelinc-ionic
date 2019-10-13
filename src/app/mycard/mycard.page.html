@@ -6,149 +6,165 @@
         <ion-title text-center>{{miTarjeta?.nombre}}</ion-title>
     </ion-toolbar>
 </ion-header>
-      
-      <ion-content padding>
-          
-        <div *ngIf="miTarjeta">
+
+<ion-content padding>
+
+    <div *ngIf="miTarjeta">
 
 
 
-                        <ion-thumbnail id="img-logo">
-                            <ion-img  [src]="miTarjeta.logo"></ion-img>
-                        </ion-thumbnail>
+        <ion-thumbnail id="img-logo">
+            <ion-img [src]="miTarjeta.logo"></ion-img>
+        </ion-thumbnail>
 
-                        <ion-thumbnail id="img-user">
-                                <ion-img   [src]="miTarjeta.foto" ></ion-img>
-                            </ion-thumbnail>
-                        
-                      
+        <ion-thumbnail id="img-user">
+            <ion-img [src]="miTarjeta.foto"></ion-img>
+        </ion-thumbnail>
 
-   
-                            <div text-center>
-                                    <h5 class="texto"><ion-icon ios="ios-contact" md="md-contact"></ion-icon>Nombre</h5>
-                                </div>
-                          
-            <ion-item >
 
-                <div id="tweet" text-center>
-                    <h5>{{miTarjeta?.nombre}}</h5>
-                </div>
-            </ion-item>
 
-                    
-            <div text-center>
-                    <h5 class="texto"> <ion-icon ios="ios-briefcase" md="md-briefcase"></ion-icon>Empresa</h5>
-                </div>
-            <ion-item>
-                    
-                <div text-center id="tweet">
-                <h5>{{miTarjeta?.empresa}}</h5>
-            </div>
-            </ion-item>
 
-            <div text-center>
-                    <h5 class="texto"><ion-icon ios="ios-ribbon" md="md-ribbon"></ion-icon>Cargo</h5>
-                </div>
-
-            <ion-item>
-            
-            <div text-center id="tweet">
-            <h5>{{miTarjeta?.empresa}}</h5>
+        <div text-center>
+            <h5 class="texto">
+                <ion-icon ios="ios-contact" md="md-contact"></ion-icon>Nombre
+            </h5>
         </div>
+
+        <ion-item>
+
+            <div id="tweet" text-center>
+                <h5>{{miTarjeta?.nombre}}</h5>
+            </div>
         </ion-item>
 
-        
+
         <div text-center>
-                <h5 class="texto"><ion-icon ios="ios-text" md="md-text"></ion-icon>Mensaje</h5>
+            <h5 class="texto">
+                <ion-icon ios="ios-briefcase" md="md-briefcase"></ion-icon>Empresa
+            </h5>
+        </div>
+        <ion-item>
+
+            <div text-center id="tweet">
+                <h5>{{miTarjeta?.empresa}}</h5>
             </div>
-              <ion-item>
-                <div text-center id="tweet">
-                  <h5>{{miTarjeta?.twit}}</h5>
-                </div>
-            </ion-item>
+        </ion-item>
 
-            <div text-center>
-                    <h5 class="texto">  <ion-icon ios="ios-globe" md="md-globe"></ion-icon>
-                        Mis redes</h5>
-                </div>
-            
+        <div text-center>
+            <h5 class="texto">
+                <ion-icon ios="ios-ribbon" md="md-ribbon"></ion-icon>Cargo
+            </h5>
+        </div>
 
-              <ion-item class="redes" item-end >
-                    <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.facebook">
-                            <ion-button class="btn-red"  [href]="miTarjeta?.facebook"> 
-                                <ion-img class="img-red" src="assets/img/face.png" text-center></ion-img>
-                           </ion-button>
-                        </ion-thumbnail>
-                        <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.instagram">
-                                <ion-button class="btn-red"  [href]="miTarjeta?.instagram"> 
-                                    <ion-img class="img-red" src="assets/img/insta.png" text-center></ion-img>
-                               </ion-button>
-                            </ion-thumbnail>
-                            <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.www">
-                                    <ion-button class="btn-red"  [href]="miTarjeta?.www"> 
-                                        <ion-img class="img-red" src="assets/img/web.png" text-center></ion-img>
-                                   </ion-button>
-                                </ion-thumbnail>
-                  </ion-item>
-    
-            <ion-item id="datos">
-                <ion-col  size="3">
-                    <ion-thumbnail class="telefono" id="img-icon">
-                        <ion-img src="assets/img/phone.png"></ion-img>
+        <ion-item>
+
+            <div text-center id="tweet">
+                <h5>{{miTarjeta?.cargo}}</h5>
+            </div>
+        </ion-item>
+
+
+        <div text-center>
+            <h5 class="texto">
+                <ion-icon ios="ios-text" md="md-text"></ion-icon>Mensaje
+            </h5>
+        </div>
+        <ion-item>
+            <div text-center id="tweet">
+                <h5>{{miTarjeta?.twit}}</h5>
+            </div>
+        </ion-item>
+
+        <div text-center>
+            <h5 class="texto">
+                <ion-icon ios="ios-globe" md="md-globe"></ion-icon>
+                Mis redes
+            </h5>
+        </div>
+
+
+        <ion-item class="redes" item-end>
+            <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.facebook">
+                <ion-button class="btn-red" [href]="miTarjeta?.facebook">
+                    <ion-img class="img-red" src="assets/img/face.png" text-center></ion-img>
+                </ion-button>
+            </ion-thumbnail>
+            <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.instagram">
+                <ion-button class="btn-red" [href]="miTarjeta?.instagram">
+                    <ion-img class="img-red" src="assets/img/insta.png" text-center></ion-img>
+                </ion-button>
+            </ion-thumbnail>
+            <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.www">
+                <ion-button class="btn-red" [href]="miTarjeta?.www">
+                    <ion-img class="img-red" src="assets/img/web.png" text-center></ion-img>
+                </ion-button>
+            </ion-thumbnail>
+            <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.linkedin">
+                <ion-button class="btn-red" [href]="miTarjeta?.linkedin">
+                    <ion-img class="img-red" src="assets/img/in.png" text-center></ion-img>
+                </ion-button>
+            </ion-thumbnail>
+        </ion-item>
+
+        <ion-item id="datos">
+            <ion-col size="3">
+                <ion-thumbnail class="telefono" id="img-icon">
+                    <ion-img src="assets/img/phone.png"></ion-img>
+                </ion-thumbnail>
+            </ion-col>
+            <ion-text>Telefono:<a href="tel:+{{miTarjeta?.telefono}}">
+                    <h5>+({{miTarjeta?.telefono.slice(0,2)}}) {{miTarjeta?.telefono.slice(2,-1)}}</h5>
+                </a></ion-text>
+        </ion-item>
+        <ion-item id="datos">
+            <ion-col size="3">
+                <ion-thumbnail id="img-icon">
+                    <ion-img src="assets/img/home.png"></ion-img>
+                </ion-thumbnail>
+            </ion-col>
+            <ion-col size="6">
+                <ion-text>Direccion: <h5>{{miTarjeta?.direccion}}</h5>
+                </ion-text>
+            </ion-col>
+            <ion-col size="3">
+                <ion-thumbnail id="img-icon-maps">
+                    <ion-button class="btn-maps">
+                        <ion-img class="img-maps" src="assets/img/maps.png" text-center></ion-img>
+                    </ion-button>
+                </ion-thumbnail>
+            </ion-col>
+
+        </ion-item>
+        <ion-item id="datos">
+            <ion-col size="3">
+                <ion-thumbnail id="img-icon">
+                    <ion-img src="assets/img/mail.png"></ion-img>
+                </ion-thumbnail>
+            </ion-col>
+            <ion-text>Correo: <a href="mailto:{{miTarjeta?.email}}">
+                    <h5 class="mail">{{miTarjeta?.email}}</h5>
+                </a></ion-text>
+        </ion-item>
+        <ion-item id="datos">
+
+            <ion-row>
+                <ion-col size="12" size-sm>
+                    <h4 text-center padding-top>CODIGO PARA COMPARTIR CONTACTO</h4>
+                </ion-col>
+                <ion-col size="12" size-sm style="text-align: -webkit-center;">
+                    <ion-thumbnail id="img-qr">
+                        <ion-img [src]="miTarjeta.qr"></ion-img>
                     </ion-thumbnail>
-                  </ion-col>
-                  <ion-text>Telefono:<a href="tel:+{{miTarjeta?.telefono}}"><h5>+({{miTarjeta?.telefono.slice(0,2)}}) {{miTarjeta?.telefono.slice(2,-1)}}</h5></a></ion-text>
-              </ion-item>
-              <ion-item id="datos" >
-                  <ion-col size="3">
-                      <ion-thumbnail id="img-icon">
-                          <ion-img src="assets/img/home.png"></ion-img>
-                      </ion-thumbnail>
-                    </ion-col>
-                    <ion-col size="6">
-                    <ion-text>Direccion: <h5>{{miTarjeta?.direccion}}</h5></ion-text>
-                    </ion-col>
-                    <ion-col size="3">
-                    <ion-thumbnail id="img-icon-maps">
-                            <ion-button class="btn-maps"> 
-                                <ion-img class="img-maps" src="assets/img/maps.png" text-center></ion-img>
-                           </ion-button>
-                        </ion-thumbnail>
-                    </ion-col>
-                   
-                </ion-item>
-                <ion-item id="datos">
-                    <ion-col size="3">
-                        <ion-thumbnail id="img-icon">
-                            <ion-img  src="assets/img/mail.png"></ion-img>
-                        </ion-thumbnail>
-                      </ion-col>
-                      <ion-text>Correo: <a href="mailto:{{miTarjeta?.email}}"><h5 class="mail">{{miTarjeta?.email}}</h5></a></ion-text>
-                  </ion-item>
-                <ion-item id="datos">
-    
-                        <ion-row>
-                                <ion-col size="12" size-sm>
-                                        <h4 text-center padding-top >CODIGO PARA COMPARTIR CONTACTO</h4>
-                                </ion-col>
-                                <ion-col size="12" size-sm style="text-align: -webkit-center;">
-                                        <ion-thumbnail id="img-qr">
-                                                <ion-img [src]="miTarjeta.qr"></ion-img>
-                                        </ion-thumbnail>
-                                </ion-col>
-                                <ion-col size="12" size-sm>
-                                        <h4 text-center padding-top >ESCANEA USANDO TRUELINC</h4>
-                                </ion-col>
-                    
-                        </ion-row>
-            
-    
-                </ion-item>
-    
-                <ion-button expand="full" [color]="btnFollow" (click)="follow()">{{btnFollowText}}</ion-button>
-            </div>
-      </ion-content>
-    
-      
-      
-    
+                </ion-col>
+                <ion-col size="12" size-sm>
+                    <h4 text-center padding-top>ESCANEA USANDO TRUELINC</h4>
+                </ion-col>
+
+            </ion-row>
+
+
+        </ion-item>
+
+        <ion-button expand="full" [color]="btnFollow" (click)="follow()">{{btnFollowText}}</ion-button>
+    </div>
+</ion-content>

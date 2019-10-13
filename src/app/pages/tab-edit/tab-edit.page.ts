@@ -86,6 +86,10 @@ ngOnInit() {
                         '',
                         [Validators.pattern(pattern)]
                     ],
+                    linkedin: [
+                      '',
+                      [Validators.pattern(pattern)]
+                    ],
                     privada: false,
                     tagValue: []
                 });
@@ -119,7 +123,8 @@ ngOnInit() {
                     geopoint: t.get('GeoPoint'),
                     twiter: t.get('twiter'),
                     direccion: t.get('Direccion'),
-                    instagram: t.get('instagram')
+                    instagram: t.get('instagram'),
+                    linkedin: t.get('Linkedin')
                   };
                   this.editarForm.get('empresa').setValue(this.miTarjeta.empresa);
                   this.editarForm.get('nombre').setValue(this.miTarjeta.nombre);
@@ -131,6 +136,7 @@ ngOnInit() {
                   this.editarForm.get('facebook').setValue(this.miTarjeta.facebook);
                   this.editarForm.get('instagram').setValue(this.miTarjeta.instagram);
                   this.editarForm.get('web').setValue(this.miTarjeta.www);
+                  this.editarForm.get('linkedin').setValue(this.miTarjeta.linkedin);
                   this.editarForm.get('privada').setValue(this.miTarjeta.privade);
                   this.tagArray = (!this.miTarjeta.tags ? [] : this.miTarjeta.tags);
 }
@@ -164,6 +170,7 @@ ngOnInit() {
               Parse.User.current().get('mi_tarjeta').set('facebook', this.editarForm.value.facebook);
               Parse.User.current().get('mi_tarjeta').set('instagram', this.editarForm.value.instagram);
               Parse.User.current().get('mi_tarjeta').set('www', this.editarForm.value.web);
+              Parse.User.current().get('mi_tarjeta').set('Linkedin', this.editarForm.value.linkedin);
               Parse.User.current().get('mi_tarjeta').set('tags', this.tagArray);
               await Parse.User.current().get('mi_tarjeta').save();
       this.loadingService.dissminsLoading();

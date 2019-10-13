@@ -29,4 +29,5 @@ export interface Tarjeta {
         twiter: string;
         direccion: string;
         instagram: string;
+        linkedin: string;
 }

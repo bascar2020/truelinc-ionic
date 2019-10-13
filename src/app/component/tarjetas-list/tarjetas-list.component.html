@@ -1,6 +1,6 @@
 <ion-list no-padding *ngIf="items">
   <ion-card *ngFor="let item of items" >
-        <ion-img class="tarjeta" src="{{item.logo}}"></ion-img>
+        <ion-img class="tarjeta" src="{{item.foto}}"></ion-img>
         <ion-item (click)="go(item.id)" routerDirection="forward">
             <ion-col size="4">
                 <ion-thumbnail id="img-user">
