@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, QueryList, ViewChildren } from '@angular/core';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 import { UserService } from 'src/app/services/user.service';
+import { Platform, IonRouterOutlet } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -9,19 +11,33 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TabsPage {
 
+  @ViewChildren(IonRouterOutlet) routerOutlets: QueryList<IonRouterOutlet>;
+ 
   barcodeScannerOptions: BarcodeScannerOptions;
-  encodeData: any;
   scannedData: {};
-
+  encodeData: any;
+  suscribe: any;
+  
   constructor(
     private barcodeScanner: BarcodeScanner,
     private userService: UserService,
+    private router: Router,
+    public platform: Platform,
   ) {
     // Options
     this.barcodeScannerOptions = {
       showTorchButton: true,
       showFlipCameraButton: true
     };
+    this.suscribe = this.platform.backButton.subscribeWithPriority(666666, () => {
+      if (this.constructor.name === 'TabsPage') {
+          if (this.router.url === '/home/tabs/tarjetas') {
+              if (window.confirm('¿Quieres salir de Truelinc?')) {
+                navigator['app'].exitApp();
+              }
+            }
+      }
+    });
   }
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {

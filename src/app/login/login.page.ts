@@ -8,8 +8,8 @@ import { version } from '../../../package.json';
     {selector: 'app-login', templateUrl: './login.page.html', styleUrls: ['./login.page.scss']}
 )
 export class LoginPage implements OnInit {
-  private username: string;
-  private password: string;
+  public username: string;
+  public password: string;
   public version: string = version;
     constructor(
       private router: Router,

@@ -3,11 +3,11 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title text-center>{{miTarjeta?.nombre}}</ion-title>
+        <ion-title class="ion-text-center">{{miTarjeta?.nombre}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
 
     <div *ngIf="miTarjeta">
 
@@ -24,7 +24,7 @@
 
 
 
-        <!-- <div text-center>
+        <!-- <div class="ion-text-center">
             <h5 class="texto">
                 <ion-icon ios="ios-contact" md="md-contact"></ion-icon>Nombre
             </h5>
@@ -32,25 +32,25 @@
 
         <ion-item>
 
-            <div id="tweet" text-center>
+            <div id="tweet" class="ion-text-center">
                 <h5>{{miTarjeta?.nombre}}</h5>
             </div>
         </ion-item>
 
 
-        <!-- <div text-center>
+        <!-- <div class="ion-text-center">
             <h5 class="texto">
                 <ion-icon ios="ios-briefcase" md="md-briefcase"></ion-icon>Empresa
             </h5>
         </div> -->
         <ion-item>
 
-            <div text-center id="tweet">
+            <div class="ion-text-center" id="tweet">
                 <h5>{{miTarjeta?.empresa}}</h5>
             </div>
         </ion-item>
 
-        <!-- <div text-center>
+        <!-- <div class="ion-text-center">
             <h5 class="texto">
                 <ion-icon ios="ios-ribbon" md="md-ribbon"></ion-icon>Cargo
             </h5>
@@ -58,24 +58,24 @@
 
         <ion-item>
 
-            <div text-center id="tweet">
+            <div class="ion-text-center" id="tweet">
                 <h5>{{miTarjeta?.cargo}}</h5>
             </div>
         </ion-item>
 
 
-        <!-- <div text-center>
+        <!-- <div class="ion-text-center">
             <h5 class="texto">
                 <ion-icon ios="ios-text" md="md-text"></ion-icon>Mensaje
             </h5>
         </div> -->
         <ion-item>
-            <div text-center id="tweet">
+            <div class="ion-text-center" id="tweet">
                 <h5>{{miTarjeta?.twit}}</h5>
             </div>
         </ion-item>
 
-        <div text-center>
+        <div class="ion-text-center">
             <h5 class="texto">
                 <ion-icon ios="ios-globe" md="md-globe"></ion-icon>
                 Mis redes
@@ -86,22 +86,22 @@
         <ion-item class="redes" item-end>
             <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.facebook">
                 <ion-button class="btn-red" [href]="miTarjeta?.facebook">
-                    <ion-img class="img-red" src="assets/img/face.png" text-center></ion-img>
+                    <ion-img class="img-red ion-text-center" src="assets/img/face.png"></ion-img>
                 </ion-button>
             </ion-thumbnail>
             <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.instagram">
                 <ion-button class="btn-red" [href]="miTarjeta?.instagram">
-                    <ion-img class="img-red" src="assets/img/insta.png" text-center></ion-img>
+                    <ion-img class="img-red ion-text-center" src="assets/img/insta.png"></ion-img>
                 </ion-button>
             </ion-thumbnail>
             <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.www">
                 <ion-button class="btn-red" [href]="miTarjeta?.www">
-                    <ion-img class="img-red" src="assets/img/web.png" text-center></ion-img>
+                    <ion-img class="img-red ion-text-center" src="assets/img/web.png"></ion-img>
                 </ion-button>
             </ion-thumbnail>
             <ion-thumbnail id="img-icon-red" *ngIf="miTarjeta?.linkedin">
                 <ion-button class="btn-red" [href]="miTarjeta?.linkedin">
-                    <ion-img class="img-red" src="assets/img/in.png" text-center></ion-img>
+                    <ion-img class="img-red ion-text-center" src="assets/img/in.png"></ion-img>
                 </ion-button>
             </ion-thumbnail>
         </ion-item>
@@ -129,7 +129,7 @@
             <ion-col size="3">
                 <ion-thumbnail id="img-icon-maps">
                     <ion-button class="btn-maps">
-                        <ion-img class="img-maps" src="assets/img/maps.png" text-center></ion-img>
+                        <ion-img class="img-maps ion-text-center" src="assets/img/maps.png"></ion-img>
                     </ion-button>
                 </ion-thumbnail>
             </ion-col>
@@ -149,7 +149,7 @@
 
             <ion-row>
                 <ion-col size="12" size-sm>
-                    <h4 text-center padding-top>CODIGO PARA COMPARTIR CONTACTO</h4>
+                    <h4 class="ion-text-center ion-padding-top">CODIGO PARA COMPARTIR CONTACTO</h4>
                 </ion-col>
                 <ion-col size="12" size-sm style="text-align: -webkit-center;">
                     <ion-thumbnail id="img-qr">
@@ -157,7 +157,7 @@
                     </ion-thumbnail>
                 </ion-col>
                 <ion-col size="12" size-sm>
-                    <h4 text-center padding-top>ESCANEA USANDO TRUELINC</h4>
+                    <h4 class="ion-text-center ion-padding-top">ESCANEA USANDO TRUELINC</h4>
                 </ion-col>
 
             </ion-row>

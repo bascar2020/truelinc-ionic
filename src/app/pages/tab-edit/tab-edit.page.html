@@ -1,10 +1,10 @@
 <ion-header>
     <ion-toolbar>
-            <ion-title text-center><img class="img" src="assets/img/logoLargo.png"></ion-title>
+          <ion-title class="ion-text-center"><img class="img" src="assets/img/logoLargo.png"></ion-title>        
     </ion-toolbar>
   </ion-header>
   
-  <ion-content padding> 
+  <ion-content class="ion-padding">
 <form class="form" [formGroup]="editarForm" (ngSubmit)="onSubmit()">
       <ion-item>
           <ion-col size="6" style="text-align: -webkit-center;">
@@ -178,7 +178,7 @@
 
                             </ion-item>
 
-              <ion-item class="privada" text-center>
+              <ion-item class="privada ion-text-center">
                   <ion-col size="9">
                   <h5>Deseas que tu tarjeta TRUELINK sea PRIVADA</h5>
                 </ion-col>
@@ -188,8 +188,8 @@
                  
                 </ion-item>
                
-                <ion-item class="privacidad" text-center>
-                        <div text-center>
+                <ion-item class="privacidad ion-text-center">
+                        <div class="">
                                 <h6>La privacidad de la tarjeta genera un costo adicional</h6> 
                           </div>
                 </ion-item>
@@ -204,7 +204,7 @@
 
           
           
-            <div  text-center>
+            <div  class="ion-text-center">
               <ion-button class="btn-item" color="danger" (click)="logOut()" size="large" expand="full" >
                   <ion-icon slot="start" name="power"></ion-icon>
                   Cerrar Sesion

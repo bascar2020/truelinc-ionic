@@ -1,13 +1,10 @@
 <ion-header>
     <ion-toolbar>
-            <ion-title text-center><img class="img" src="assets/img/logoLargo.png"></ion-title>
+        <ion-title class="ion-text-center"><img class="img" src="assets/img/logoLargo.png"></ion-title>
       </ion-toolbar>
   </ion-header>
   
-  <ion-content padding>
-      <!-- <div padding>
-          <h3 text-center padding-top>Escoje tu rango de busqueda</h3>
-      </div> -->
+  <ion-content class="ion-padding">
 
       <ion-segment (ionChange)="segmentChanged($event)">
           <ion-segment-button checked value="cerca">
@@ -22,11 +19,11 @@
         </ion-segment>
 
     
-      <ion-searchbar  showCancelButton debounce="500" (ionInput)="searchTarjetas($event)"></ion-searchbar>
+      <ion-searchbar  focus debounce="500" (ionInput)="searchTarjetas($event)"></ion-searchbar>
 
    
 
-      <ion-list no-padding *ngIf="tarjetas">
+      <ion-list class="ion-no-padding" *ngIf="tarjetas">
           <ion-card *ngFor="let item of tarjetas" >
                 <ion-img class="tarjeta" src="{{item.logo}}"></ion-img>
                 <ion-item (click)="go(item.id)" routerDirection="forward">
@@ -47,11 +44,11 @@
           </ion-card>
         </ion-list>
         
-        <ion-text padding color="light" *ngIf="!tarjetas?.length > 0">
-            <h6 text-center >Busqueda sin resultados</h6>
+        <ion-text class="ion-padding" color="light" *ngIf="!(tarjetas?.length > 0)">
+            <h6 class="ion-text-center" >Busqueda sin resultados</h6>
           </ion-text>
 
-    <!-- <ion-list no-padding>
+    <!-- <ion-list class="ion-no-padding">
     <ion-card >
         
           <ion-item href="#">

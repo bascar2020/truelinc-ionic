@@ -1,15 +1,14 @@
 
 
-<ion-content padding class="bg-style">
- 
+<ion-content class="ion-padding bg-style">
   <ion-grid>
-      <ion-row justify-content-center>
-        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-            <div text-center id="img-logo">
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+            <div class="ion-text-center" id="img-logo">
                 <ion-img src="assets/img/logo.png"></ion-img>
               </div>
-          <div text-center>
-            <h1 text-center>¡BIENVENIDO!</h1>
+          <div class="ion-text-center">
+            <h1 class="ion-text-center">¡BIENVENIDO!</h1>
           </div>
           <ion-list>
 
@@ -23,15 +22,15 @@
                   <ion-input [(ngModel)]="password" type="password" inputmode="password" ></ion-input>
                   </ion-item>
                   
-                  <ion-button class="btn-clear" size="small" float-right fill="clear">olvidaste tu contraseña</ion-button>
+                  <ion-button class="ion-float-right btn-clear" size="small" fill="clear">olvidaste tu contraseña</ion-button>
 
             </ion-list>
     
-          <div padding>
+          <div class="ion-padding">
               <ion-button (click)="signIn()" size="large" expand="full" >Continuar</ion-button>
           </div>
-          <div padding>
-              <h3 text-center padding-top>¿No tienes una cuenta?</h3>
+          <div class="ion-padding">
+              <h3 class="ion-padding-top ion-text-center">¿No tienes una cuenta?</h3>
               <ion-button full size="large" (click)="goSignUp()" expand="full" fill="clear">CREAR CUENTA</ion-button>
             </div>
             <p>Version {{version}}</p>

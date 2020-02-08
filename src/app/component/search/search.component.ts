@@ -12,7 +12,8 @@ export class SearchComponent implements AfterViewInit {
 
   @Output() searchCompleted = new EventEmitter();
   @Output() searchStarted = new EventEmitter();
-
+  
+  public isSearchbarOpened = false;
   private searchSubject = new BehaviorSubject<string>('');
   constructor() { }
 
@@ -23,7 +24,7 @@ export class SearchComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.searchSubject.pipe(debounceTime(300), distinctUntilChanged()).subscribe(searchedText => {
+    this.searchSubject.pipe(debounceTime(900), distinctUntilChanged()).subscribe(searchedText => {
 
       if (!this.items) { return this.searchCompleted.emit([]); }
       if (!searchedText) { return this.searchCompleted.emit(this.items); }
