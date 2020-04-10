@@ -15,7 +15,8 @@ import { File } from '@ionic-native/file/ngx';
 })
 export class SignupPage implements OnInit {
 
-  validations_form: FormGroup;
+  public validations_form: FormGroup;
+  public createCard: Boolean;
   constructor(
     private router: Router,
     private toast: ToastService,
@@ -29,15 +30,40 @@ export class SignupPage implements OnInit {
   }
 
   ngOnInit() {
+    this.createCard = false;
     this.validations_form = this.formBuilder.group({
-      empresa : ['', [ Validators.required, Validators.minLength(4)]],
-      cargo: ['', [ Validators.required, Validators.minLength(2)]],
       nombre: ['', [ Validators.required, Validators.minLength(2)]],
-      telefono: ['', [ Validators.required, Validators.pattern('^[0-9]*$')]],
-      direccion: ['', [ Validators.required]],
       correo: ['', [ Validators.required, Validators.email]],
       password: ['', [ Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.,|¿]).{8,20}$')]],
+      empresa : ['', []],
+      cargo: ['', []],
+      telefono: ['', []],
+      direccion: ['', []],
     });
+  }
+
+  changeToogle($event) {
+    this.createCard = !this.createCard;
+    if (this.createCard) {
+      this.empresa.setValidators([ Validators.required, Validators.minLength(4)]);
+      this.empresa.updateValueAndValidity();
+      this.cargo.setValidators([ Validators.required, Validators.minLength(2)]);
+      this.cargo.updateValueAndValidity();
+      this.telefono.setValidators([ Validators.required, Validators.pattern('^[0-9]*$')]);
+      this.telefono.updateValueAndValidity();
+      this.direccion.setValidators([ Validators.required]);
+      this.direccion.updateValueAndValidity();
+    } else {
+      this.empresa.clearValidators();
+      this.empresa.updateValueAndValidity();
+      this.cargo.clearValidators();
+      this.cargo.updateValueAndValidity();
+      this.telefono.clearValidators();
+      this.telefono.updateValueAndValidity();
+      this.direccion.clearValidators();
+      this.direccion.updateValueAndValidity();
+    }
+
   }
 
    signUp() {
@@ -47,14 +73,14 @@ export class SignupPage implements OnInit {
             // console.log('Logged in successfully', resp);
             const Tarjetas = Parse.Object.extend('Tarjetas');
             const tarjetaUser = new Tarjetas();
-            tarjetaUser.set('Empresa', this.validations_form.value.empresa);
-            tarjetaUser.set('Nombre', this.validations_form.value.nombre);
-            tarjetaUser.set('generalRate', 5);
-            tarjetaUser.set('Privada', false);
-            tarjetaUser.set('Direccion', this.validations_form.value.direccion);
-            tarjetaUser.set('Telefono', this.validations_form.value.telefono);
             tarjetaUser.set('Email', this.validations_form.value.correo);
-            tarjetaUser.set('Cargo', this.validations_form.value.cargo);
+            tarjetaUser.set('Empresa', this.validations_form.value.empresa || null);
+            tarjetaUser.set('Nombre', this.validations_form.value.nombre);
+            tarjetaUser.set('Direccion', this.validations_form.value.direccion || null);
+            tarjetaUser.set('Telefono', this.validations_form.value.telefono || null);
+            tarjetaUser.set('Cargo', this.validations_form.value.cargo || null);
+            tarjetaUser.set('generalRate', 5);
+            tarjetaUser.set('Privada', true);
             await tarjetaUser.save();
             resp.set('mi_tarjeta', tarjetaUser);
             resp.set('email', this.validations_form.value.correo);

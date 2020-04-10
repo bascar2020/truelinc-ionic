@@ -43,10 +43,55 @@
 
                                                 <ion-list>
                                                         <ion-item>
+                                                                <ion-icon ios="ios-contact" md="md-contact"></ion-icon>
+                                                                <ion-input formControlName="nombre" required='true'
+                                                                        autocapitalize placeholder="Tu Nombre">
+                                                                </ion-input>
+                                                                <ion-label *ngIf="nombre.invalid && nombre.touched"
+                                                                        color="danger">requerido</ion-label>
+                                                        </ion-item>
+                                                        <ion-item>
+                                                                <ion-icon ios="ios-mail" md="md-mail"></ion-icon>
+                                                                <ion-input formControlName="correo" required='true'
+                                                                        clear-input='true' type="email"
+                                                                        placeholder="Email"></ion-input>
+                                                                <ion-label *ngIf="correo.invalid && correo.touched"
+                                                                        color="danger">requerido</ion-label>
+                                                        </ion-item>
+                                                        <ion-item>
+                                                                <ion-icon ios="ios-key" md="md-key"></ion-icon>
+                                                                <ion-input formControlName="password" required='true'
+                                                                        type="password" placeholder="Contraseña">
+                                                                </ion-input>
+                                                        </ion-item>
+                                                        <ion-grid>
+                                                                <ion-row>
+                                                                        <ion-label *ngIf="password.invalid && password.touched" color="danger"> 8 a 20 caracteres</ion-label>
+                                                                </ion-row>        
+                                                                <ion-row>
+                                                                        <ion-label *ngIf="password.invalid && password.touched" color="danger"> Mínimo 1 mayúscula </ion-label>
+                                                                </ion-row>        
+                                                                <ion-row>
+                                                                        <ion-label *ngIf="password.invalid && password.touched" color="danger"> Mínimo 1 minúscula </ion-label>
+                                                                </ion-row>        
+                                                                <ion-row>
+                                                                        <ion-label *ngIf="password.invalid && password.touched" color="danger"> Mínimo 1 carácter especial </ion-label>
+                                                                </ion-row>        
+                                                        </ion-grid>
+                                                                       
+
+                                                        <ion-item>
+                                                                <ion-label>¿Quieres crear tu tarjeta ahora?</ion-label>
+                                                                <ion-toggle slot="end" checked={{createCard}} (ionChange)="changeToogle($event)"></ion-toggle>
+                                                        </ion-item>
+                                                        
+                                                        
+                                                        <div *ngIf="createCard">
+                                                        <ion-item>
                                                                 <ion-icon ios="ios-briefcase" md="md-briefcase">
                                                                 </ion-icon> <br>
                                                                 <ion-input formControlName="empresa" required='true'
-                                                                        autocapitalize placeholder="Escribe tu empresa">
+                                                                        autocapitalize placeholder="Tu empresa">
                                                                 </ion-input>
                                                                 <ion-label *ngIf="empresa.invalid && empresa.touched"
                                                                         color="danger">requerido</ion-label>
@@ -61,18 +106,11 @@
                                                                         color="danger">requerido</ion-label>
                                                         </ion-item>
 
-                                                        <ion-item>
-                                                                <ion-icon ios="ios-contact" md="md-contact"></ion-icon>
-                                                                <ion-input formControlName="nombre" required='true'
-                                                                        autocapitalize placeholder="Escribe tu Nombre">
-                                                                </ion-input>
-                                                                <ion-label *ngIf="nombre.invalid && nombre.touched"
-                                                                        color="danger">requerido</ion-label>
-                                                        </ion-item>
+                                                        
                                                         <ion-item>
                                                                 <ion-icon ios="ios-call" md="md-call"></ion-icon>
                                                                 <ion-input formControlName="telefono" required='true'
-                                                                        type="tel" placeholder="Escribe tu Telefono">
+                                                                        type="tel" placeholder="Tu Telefono">
                                                                 </ion-input>
                                                                 <ion-label *ngIf="telefono.invalid && telefono.touched"
                                                                         color="danger">requerido</ion-label>
@@ -83,28 +121,12 @@
                                                                 <ion-icon ios="ios-home" md="md-home"></ion-icon>
                                                                 <ion-input formControlName="direccion" required='true'
                                                                         autocapitalize
-                                                                        placeholder="Cual es tu Direccion"></ion-input>
+                                                                        placeholder="Direccion"></ion-input>
                                                                 <ion-label
                                                                         *ngIf="direccion.invalid && direccion.touched"
                                                                         color="danger">requerido</ion-label>
                                                         </ion-item>
-                                                        <ion-item>
-                                                                <ion-icon ios="ios-mail" md="md-mail"></ion-icon>
-                                                                <ion-input formControlName="correo" required='true'
-                                                                        clear-input='true' type="email"
-                                                                        placeholder="Cual es tu Correo"></ion-input>
-                                                                <ion-label *ngIf="correo.invalid && correo.touched"
-                                                                        color="danger">requerido</ion-label>
-                                                        </ion-item>
-                                                        <ion-item>
-                                                                <ion-icon ios="ios-key" md="md-key"></ion-icon>
-                                                                <ion-input formControlName="password" required='true'
-                                                                        type="password" placeholder="Contraseña">
-                                                                </ion-input>
-                                                                <ion-label *ngIf="password.invalid && password.touched"
-                                                                        color="danger">8 a 20 caracteres min 1 May y 1
-                                                                        min y 1 un caracter especial </ion-label>
-                                                        </ion-item>
+                                                </div>
 
                                                 </ion-list>
 
@@ -113,7 +135,7 @@
 
                                         <div class="ion-padding">
                                                 <ion-button type="submit" class="btn-perfil" size="large" expand="full"
-                                                        [disabled]="!validations_form.valid">CREAR PERFIL</ion-button>
+                                                        [disabled]="validations_form.invalid">CREAR PERFIL</ion-button>
                                         </div>
 
                                         <div class="ion-text-center" id="img-logo">
