@@ -21,6 +21,9 @@ export class LoginPage implements OnInit {
     goSignUp() {
         this.router.navigateByUrl('/signup');
     }
+    goReset() {
+        this.router.navigateByUrl('/recover-password');
+    }
     signIn() {
         Parse.User
             .logIn(this.username, this.password)

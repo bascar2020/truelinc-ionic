@@ -12,7 +12,7 @@
           </div>
           <ion-list>
 
-              <ion-item>
+                  <ion-item>
                   <ion-label position="floating">Email</ion-label>
                   <ion-input [(ngModel)]="username" clearInput inputmode="email" type="email" ></ion-input>
                   </ion-item>
@@ -22,7 +22,7 @@
                   <ion-input [(ngModel)]="password" type="password" inputmode="password" ></ion-input>
                   </ion-item>
                   
-                  <ion-button class="ion-float-right btn-clear" size="small" fill="clear">olvidaste tu contraseña</ion-button>
+                  <ion-button (click)="goReset()" class="ion-float-right btn-clear" size="small" fill="clear">olvidaste tu contraseña</ion-button>
 
             </ion-list>
     
