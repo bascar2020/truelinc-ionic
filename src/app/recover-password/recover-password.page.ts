@@ -4,6 +4,7 @@ import {Parse} from 'parse';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AlertService } from '../services/alert.service';
 import { ignoreElements } from 'rxjs/operators';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-recover-password',
@@ -26,19 +27,17 @@ export class RecoverPasswordPage implements OnInit {
 
   resetPassword() {
     let msg = 'La solicitud de restablecimiento de contraseña se envió correctamente';
-     Parse.User.requestPasswordReset(this.reset_form.value.correo).then(
-      async (resp) => {
-        console.log('Password reset request was sent successfully');
-        console.log(resp);
-        return 'OK';
-      })
-      .catch(function(error) {
-        console.log('The login failed with error: ' + error.code + ' ' + error.message);
-        msg = error.message;
-        this.alert.presentAlert(msg);
-        return msg;
-      });
-
+    const asyncFunction = async () => {
+      await Parse.User.requestPasswordReset(this.reset_form.value.correo).then(
+        (resp) => {
+          console.log('Password reset request was sent successfully');
+        })
+        .catch(function(error) {
+          console.log('The login failed with error: ' + error.code + ' ' + error.message);
+          msg = error.message;
+        });
+      };
+       asyncFunction().then(_ => this.alert.presentAlert(msg));
   }
   get correo() {
     return this.reset_form.get('correo');
