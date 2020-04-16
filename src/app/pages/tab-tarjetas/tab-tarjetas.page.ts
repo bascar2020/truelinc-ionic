@@ -10,24 +10,22 @@ import { ToastService } from 'src/app/services/toast.service';
   templateUrl: './tab-tarjetas.page.html',
   styleUrls: ['./tab-tarjetas.page.scss'],
 })
-export class TabTarjetasPage implements OnInit {
+export class TabTarjetasPage {
   misTarjetas: TarjetaDeck[];
   copyOfMisTarjetas: TarjetaDeck[];
-
   constructor(
     private tarjetaService: TarjetaService,
-    private loadingService: LoaderService,
     private toast: ToastService,
   ) { }
 
-  ngOnInit() {
-     this.getTarjetas();
+  ionViewWillEnter() {
+    this.getTarjetas();
   }
 
-  private async getTarjetas() {
-    this.loadingService.presentLoading();
+  private getTarjetas() {
+
     this.tarjetaService.getTarjetasCurrentUser().subscribe((tarjetas) => {
-      // console.log(tarjetas);
+
       this.misTarjetas = tarjetas.map((t) => {
         return {
               id: t.id,
@@ -38,10 +36,9 @@ export class TabTarjetasPage implements OnInit {
             };
       });
       this.copyOfMisTarjetas = Array.from(this.misTarjetas);
-      this.loadingService.dissminsLoading();
-    }, () => {
-      this.loadingService.dissminsLoading();
+    }, (error) => {
       this.toast.presentErrorToast('Error al obtener tus tarjetas');
+      console.error(error);
     });
   }
 

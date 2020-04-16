@@ -174,6 +174,7 @@ ngOnInit() {
               Parse.User.current().get('mi_tarjeta').set('tags', this.tagArray);
               await Parse.User.current().get('mi_tarjeta').save();
       this.loadingService.dissminsLoading();
+      await this.presentToast('Información guardada');
   }
 
   logOut() {

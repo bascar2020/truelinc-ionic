@@ -108,12 +108,12 @@ export class MycardPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirmar Cancel: blah');
+            
           }
         }, {
           text: 'Ok',
           handler: () => {
-            console.log('Confirmar Okay');
+
             this.btnFollow = 'primary';
           this.btnFollowText = 'Seguir tarjeta';
           this.isFollowing = false;

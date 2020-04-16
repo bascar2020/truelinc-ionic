@@ -30,7 +30,7 @@ export class TarjetaService {
     }
 
     public getTarjetasSearch(substring: String, distance: Number, position: Geoposition ): Observable < Parse.Object> {
-
+        if (!position) { return of(); }
         const location = new Parse.GeoPoint({latitude: position.coords.latitude, longitude: position.coords.longitude});
         const Tarjetas = Parse
             .Object

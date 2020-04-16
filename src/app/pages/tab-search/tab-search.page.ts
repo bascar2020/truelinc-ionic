@@ -13,11 +13,12 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
   styleUrls: ['./tab-search.page.scss'],
 })
 export class TabSearchPage implements OnInit, AfterViewInit {
-  tarjetas: TarjetaDeck[];
-  distanceKm: Number = 0;
-  actualGeoposition: Geoposition;
+  public tarjetas: TarjetaDeck[];
+  public distanceKm: Number = 0;
+  public actualGeoposition: Geoposition;
+  public query: SearchQuery = new SearchQuery();
+  private searchSubject = new BehaviorSubject<SearchQuery>(new SearchQuery());
 
-  private searchSubject = new BehaviorSubject<string>('');
   constructor(
     private geolocation: Geolocation,
     private tarjetaService: TarjetaService,
@@ -28,59 +29,86 @@ export class TabSearchPage implements OnInit, AfterViewInit {
 
 
   searchTarjetas(event: any) {
-    this.searchSubject.next(event.target.value);
+    this.query.textQuery = event.target.value;
+    if (event.target.value !== '') {
+      this.searchSubject.next(this.query);
+    }
   }
 
-  segmentChanged (ev: any) {
-    this.distanceKm = ev.target.value;
+  segmentChanged(ev: any) {
+    let distanceKm = 0;
     switch (ev.target.value) {
       case 'cerca':
-        this.distanceKm = 10;
+        distanceKm = 10;
         break;
       case 'ciudad':
-        this.distanceKm = 100;
+        distanceKm = 100;
         break;
       case 'nacional':
-        this.distanceKm = 1000;
+        distanceKm = 1000;
         break;
       default:
-        this.distanceKm = 10;
+        distanceKm = 10;
         break;
+    }
+    if (this.query.textQuery !== '') {
+      this.query.distanceKm = distanceKm;
+      this.searchSubject.next(this.query);
     }
   }
 
   ngOnInit() {
-      this.geolocation.getCurrentPosition().then((resp) => {
-          this.actualGeoposition = resp;
-      }).catch((error) => {
-        console.log('Error getting location', error);
-      });
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.query.geoposition = resp;
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
   ngAfterViewInit() {
-    this.searchSubject.pipe(debounceTime(500), distinctUntilChanged()).subscribe(searchedText => {
-      console.log(searchedText);
-      console.log(this.actualGeoposition);
+    this.searchSubject.pipe(debounceTime(700)).subscribe(searchedText => {
+      // console.log(searchedText);
+      // console.log(this.actualGeoposition);
       if (!searchedText) { return this.tarjetas; }
       this.loadingService.presentLoading();
-      this.tarjetaService.getTarjetasSearch(searchedText, this.distanceKm, this.actualGeoposition).subscribe((tarjetasServer) => {
-        this.tarjetas = tarjetasServer.map((t) => {
-          return {
-                id: t.id,
-                nombre: t.get('Nombre'),
-                empresa: t.get('Empresa'),
-                cargo: t.get('Cargo'),
-                logo: (t.get('LogoEmpresa') === undefined ? 'assets/img/noImage.jpg' : t.get('LogoEmpresa').url())
-              };
+      this.tarjetaService.getTarjetasSearch(searchedText.textQuery, searchedText.distanceKm, searchedText.geoposition)
+        .subscribe((tarjetasServer) => {
+          this.tarjetas = tarjetasServer.map((t) => {
+            return {
+              id: t.id,
+              nombre: t.get('Nombre'),
+              empresa: t.get('Empresa'),
+              cargo: t.get('Cargo'),
+              logo: (t.get('LogoEmpresa') === undefined ? 'assets/img/noImage.jpg' : t.get('LogoEmpresa').url())
+            };
+          });
+          this.loadingService.dissminsLoading();
+        }, (error) => {
+          this.loadingService.dissminsLoading();
+          this.toast.presentErrorToast('Error al obtener tus tarjetas');
+          console.error(error);
         });
-        this.loadingService.dissminsLoading();
-      }, () => {
-        this.loadingService.dissminsLoading();
-        this.toast.presentErrorToast('Error al obtenert tus cartas');
-      });
     });
   }
 
   go(id: string) {
     this.router.navigateByUrl('/home/tabs/search/' + id);
   }
+}
+
+class SearchQuery {
+  textQuery: string;
+  geoposition: Geoposition;
+  distanceKm: Number;
+  constructor() {
+    this.textQuery = '';
+    this.distanceKm = 0;
+  }
+  print() {
+    console.log(
+      this.textQuery,
+      this.geoposition,
+      this.distanceKm
+    );
+  }
+
 }
