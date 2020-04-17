@@ -4,10 +4,16 @@ import { Router } from '@angular/router';
 import { ToastController, NavController} from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { LoaderService } from 'src/app/services/loader.service';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Tarjeta } from 'src/app/models/tarjeta.model';
+import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { ActionSheetController } from '@ionic/angular';
+import { Crop } from '@ionic-native/crop/ngx';
 
-
+enum IconType {
+  Foto,
+  Logo
+}
 @Component({
   selector: 'app-tab-edit',
   templateUrl: './tab-edit.page.html',
@@ -29,8 +35,11 @@ export class TabEditPage implements OnInit {
     private toastCtrl: ToastController,
     private formBuilder: FormBuilder,
     private loadingService: LoaderService,
-    private imagePicker: ImagePicker,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private camera: Camera,
+    public actionSheetController: ActionSheetController,
+    private file: File,
+    private crop: Crop,
   ) { }
 
 ngOnInit() {
@@ -194,91 +203,103 @@ ngOnInit() {
   }
 
   getLogo() {
-
-    this.options = {
-      // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
-      // selection of a single image, the plugin will return it.
-       maximumImagesCount: 1,
-      // max width and height to allow the images to be.  Will keep aspect
-      // ratio no matter what.  So if both are 800, the returned image
-      // will be at most 800 pixels wide and 800 pixels tall.  If the width is
-      // 800 and height 0 the image will be 800 pixels wide if the source
-      // is at least that wide.
-      width: 400,
-      height: 400,
-      // quality of resized image, defaults to 100
-      quality: 100,
-
-      // output type, defaults to FILE_URIs.
-      // available options are
-      // window.imagePicker.OutputType.FILE_URI (0) or
-      // window.imagePicker.OutputType.BASE64_STRING (1)
-      outputType: 1
-    };
-    this.loadingService.presentLoading();
-    this.imagePicker.getPictures(this.options).then(async (results) => {
-      for (let i = 0; i < results.length; i++) {
-        this.miTarjeta.logo = ('data:image/jpeg;base64,' + results[i]);
-        this.logoBase64 = results[i];
-      }
-      const file = new Parse.File('logo.jpg', { base64: this.logoBase64 });
-      await file.save();
-      Parse.User.current().get('mi_tarjeta').set('LogoEmpresa', file);
-      await Parse.User.current().get('mi_tarjeta').save().then(function(gameTurnAgain) {
-        this.presentToast('Logo actualizado');
-        this.loadingService.dissminsLoading();
-        }, function(error) {
-          console.log(error);
-          this.loadingService.dissminsLoading();
-        });
-      }, (err) => {console.log(err); });
+    this.selectImage(IconType.Logo);
   }
 
   getFoto() {
-
-    this.options = {
-      // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
-      // selection of a single image, the plugin will return it.
-       maximumImagesCount: 1,
-      // max width and height to allow the images to be.  Will keep aspect
-      // ratio no matter what.  So if both are 800, the returned image
-      // will be at most 800 pixels wide and 800 pixels tall.  If the width is
-      // 800 and height 0 the image will be 800 pixels wide if the source
-      // is at least that wide.
-      width: 600,
-      height: 400,
-      // quality of resized image, defaults to 100
-      quality: 100,
-
-      // output type, defaults to FILE_URIs.
-      // available options are
-      // window.imagePicker.OutputType.FILE_URI (0) or
-      // window.imagePicker.OutputType.BASE64_STRING (1)
-      outputType: 1
-    };
-    this.loadingService.presentLoading();
-    this.imagePicker.getPictures(this.options).then(async (results) => {
-      for (let i = 0; i < results.length; i++) {
-        this.fotoBase64 =  results[i];
-        this.miTarjeta.foto = ('data:image/jpeg;base64,' + results[i]);
-      }
-      const file = new Parse.File('logo.jpg', { base64: this.fotoBase64 });
-      await file.save();
-      Parse.User.current().get('mi_tarjeta').set('Foto', file);
-      await Parse.User.current().get('mi_tarjeta').save().then(function(gameTurnAgain) {
-        console.log('Se actualizo la Foto');
-        this.presentToast('Foto actualizada');
-        this.loadingService.dissminsLoading();
-        }, function(error) {
-          console.log(error);
-          this.loadingService.dissminsLoading();
-        });
-      }, (err) => {console.log(err); });
-
+    this.selectImage(IconType.Foto);
   }
 
   goMap() {
     this.router.navigateByUrl('/home/tabs/edit/maps');
+  }
+
+  async selectImage(iconType) {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Fuente de imagen',
+      buttons: [{
+        text: 'Usar Galeria',
+        handler: () => {
+          this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY, iconType);
+        }
+      },
+      {
+        text: 'Usar Camera',
+        handler: () => {
+          this.pickImage(this.camera.PictureSourceType.CAMERA, iconType);
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      }
+      ]
+    });
+    await actionSheet.present();
+  }
+
+  pickImage(sourceType, iconType) {
+    const options: CameraOptions = {
+      quality: 100,
+      sourceType: sourceType,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+    this.camera.getPicture(options).then(async (imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      // let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.cropImage(imageData, iconType);
+    }, (err) => {
+      console.error(err);
+    });
+  }
+
+  cropImage(fileUrl, iconType) {
+    this.crop.crop(fileUrl, {  quality: 75, targetWidth: -1, targetHeight: -1 })
+      .then(
+        newPath => {
+          this.showCroppedImage(newPath.split('?')[0], iconType);
+        },
+        error => {
+          alert('Error cropping image' + error);
+        }
+      );
+  }
+
+  showCroppedImage(ImagePath, iconType) {
+    this.loadingService.presentLoading();
+    const copyPath = ImagePath;
+    const splitPath = copyPath.split('/');
+    const imageName = splitPath[splitPath.length - 1];
+    const filePath = ImagePath.split(imageName)[0];
+    let nameVarBack4App = 'Foto';
+    this.file.readAsDataURL(filePath, imageName).then(async base64 => {
+
+      let nameFile = '';
+      if (IconType.Foto === iconType) {
+        nameFile = 'Foto.jpg';
+        this.miTarjeta.foto = base64;
+      } else {
+        nameFile = 'Logo.jpg';
+        nameVarBack4App = 'LogoEmpresa';
+        this.miTarjeta.logo = base64;
+      }
+
+      const file = new Parse.File(nameFile, {base64: base64});
+      await file.save();
+      Parse.User.current().get('mi_tarjeta').set(nameVarBack4App, file);
+      await Parse.User.current().get('mi_tarjeta').save().then(function() {
+      }, (error) => { console.error(error); });
+
+      this.presentToast(nameFile.slice(0, nameFile.length - 4) + 'cargada.');
+      this.loadingService.dissminsLoading();
+
+    }, error => {
+      alert('Error in showing image' + error);
+      this.loadingService.dissminsLoading();
+    });
   }
 
 

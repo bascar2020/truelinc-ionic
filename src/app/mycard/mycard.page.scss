@@ -64,17 +64,18 @@ ion-content{
 
 #img-user{
 
+   
+    width: 100%;
+    height: auto;
+}
+
+#img-logo{
+
     width: 80px;
     height: 80px;
     --border-radius: 50%;
     margin-top: -20%;
     margin-left: 38%;
-}
-
-#img-logo{
-
-    width: 100%;
-    height: auto;
 
 }
 

@@ -9,10 +9,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { AgmCoreModule } from '@agm/core';
 import c from '../../apiKeys';
+import { Camera } from '@ionic-native/Camera/ngx';
+import { Crop } from '@ionic-native/crop/ngx';
 
 @NgModule({
     declarations: [AppComponent],
@@ -28,12 +29,11 @@ import c from '../../apiKeys';
     ],
     providers: [
         StatusBar,
-        SplashScreen, {
-            provide: RouteReuseStrategy,
-            useClass: IonicRouteStrategy
-        },
-        ImagePicker,
-        File
+        SplashScreen,
+        Camera,
+        File,
+        Crop,
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
     ],
     bootstrap: [AppComponent]
 })

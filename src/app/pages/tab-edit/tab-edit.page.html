@@ -12,18 +12,22 @@
             <ion-thumbnail id="img-user">
     
               <ion-button (click)="getLogo()">
-                <ion-img [src]="miTarjeta?.logo"></ion-img>
+                <ion-avatar>
+                  <ion-img [src]="miTarjeta?.logo"></ion-img>
+                </ion-avatar>
               </ion-button>
             </ion-thumbnail>
-            <ion-label>Cambia tu imagen</ion-label>
+            <ion-label>Cambia tu Logo</ion-label>
           </ion-col>
           <ion-col size="6" style="text-align: -webkit-center">
             <ion-thumbnail id="img-user">
               <ion-button (click)="getFoto()">
-                <ion-img [src]="miTarjeta?.foto"></ion-img>
+                <ion-avatar>  
+                  <ion-img [src]="miTarjeta?.foto"></ion-img>
+                </ion-avatar>
               </ion-button>
             </ion-thumbnail>
-            <ion-label>Cambia tu fondo</ion-label>
+            <ion-label>Cambia tu Fondo</ion-label>
           </ion-col>
         </ion-row>
 
