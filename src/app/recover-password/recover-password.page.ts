@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 
 import {Parse} from 'parse';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { AlertService } from '../services/alert.service';
-import { ignoreElements } from 'rxjs/operators';
-import { async } from '@angular/core/testing';
+
 
 @Component({
   selector: 'app-recover-password',
@@ -15,14 +14,19 @@ export class RecoverPasswordPage implements OnInit {
 
   public username: string;
   public reset_form: FormGroup;
+ 
   constructor(
-    private formBuilder: FormBuilder,
     private alert: AlertService,
   ) { }
   ngOnInit() {
-    this.reset_form = this.formBuilder.group({
-      correo: new FormControl('', Validators.compose([ Validators.required, Validators.email])),
+
+    this.reset_form = new FormGroup({
+      'correo': new FormControl('', [
+        Validators.required,
+        Validators.email
+      ])
     });
+
   }
 
   resetPassword() {
