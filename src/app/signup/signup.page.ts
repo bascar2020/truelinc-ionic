@@ -15,8 +15,8 @@ import { File } from '@ionic-native/file/ngx';
 })
 export class SignupPage implements OnInit {
 
-  public validations_form: FormGroup;
-  public createCard: Boolean;
+  public validationsForm: FormGroup;
+  public createCard: boolean;
   constructor(
     private router: Router,
     private toast: ToastService,
@@ -31,7 +31,7 @@ export class SignupPage implements OnInit {
 
   ngOnInit() {
     this.createCard = false;
-    this.validations_form = this.formBuilder.group({
+    this.validationsForm = this.formBuilder.group({
       nombre: ['', [ Validators.required, Validators.minLength(2)]],
       correo: ['', [ Validators.required, Validators.email]],
       password: ['', [ Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.,|¿]).{8,20}$')]],
@@ -68,35 +68,35 @@ export class SignupPage implements OnInit {
 
    signUp() {
     this.loadingService.presentLoading();
-    Parse.User.signUp(this.validations_form.value.correo, this.validations_form.value.password)
+    Parse.User.signUp(this.validationsForm.value.correo, this.validationsForm.value.password)
         .then(async (resp) => {
             // console.log('Logged in successfully', resp);
             const Tarjetas = Parse.Object.extend('Tarjetas');
             const tarjetaUser = new Tarjetas();
-            tarjetaUser.set('Email', this.validations_form.value.correo);
-            tarjetaUser.set('Empresa', this.validations_form.value.empresa || null);
-            tarjetaUser.set('Nombre', this.validations_form.value.nombre);
-            tarjetaUser.set('Direccion', this.validations_form.value.direccion || null);
-            tarjetaUser.set('Telefono', this.validations_form.value.telefono || null);
-            tarjetaUser.set('Cargo', this.validations_form.value.cargo || null);
+            tarjetaUser.set('Email', this.validationsForm.value.correo);
+            tarjetaUser.set('Empresa', this.validationsForm.value.empresa || null);
+            tarjetaUser.set('Nombre', this.validationsForm.value.nombre);
+            tarjetaUser.set('Direccion', this.validationsForm.value.direccion || null);
+            tarjetaUser.set('Telefono', this.validationsForm.value.telefono || null);
+            tarjetaUser.set('Cargo', this.validationsForm.value.cargo || null);
             tarjetaUser.set('generalRate', 5);
             tarjetaUser.set('Privada', true);
             await tarjetaUser.save();
             resp.set('mi_tarjeta', tarjetaUser);
-            resp.set('email', this.validations_form.value.correo);
+            resp.set('email', this.validationsForm.value.correo);
             resp.set('tarjetas', [tarjetaUser.id]);
             await resp.save();
             // Clears up the form
             await this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, `truelinc + : + ${tarjetaUser.id}`)
             .then((encodedData) => {
-                const nameFile: string = encodedData['file'].split('/').pop();
+                const nameFile: string = encodedData.file.split('/').pop();
                 this.file.readAsDataURL(this.file.tempDirectory, nameFile)
                 .then(base64File => {
                   tarjetaUser.set('QR', new Parse.File(`${resp.id}.jpg`, { base64: base64File }));
                   tarjetaUser.save();
                 })
                 .catch(() => {
-                    console.log('Error reading file');
+                    console.error('Error reading file');
                 });
             }, (err) => {}
             );
@@ -105,38 +105,38 @@ export class SignupPage implements OnInit {
             this.router.navigateByUrl('/home');
             this.loadingService.dissminsLoading();
         }, err => {
-            console.log('Error signing in', err);
+            console.error('Error signing in', err);
             this.toast.presentErrorToast('Error signing in' + err.message);
             this.loadingService.dissminsLoading();
         });
-      this.loadingService.dissminsLoading();
+    this.loadingService.dissminsLoading();
   }
   onSubmit() {
-   // console.log(this.validations_form.value);
+   // console.log(this.validationsForm.value);
     this.signUp();
     // TODO get form group value & handle submission
   }
 
   get empresa() {
-    return this.validations_form.get('empresa');
+    return this.validationsForm.get('empresa');
   }
   get cargo() {
-    return this.validations_form.get('cargo');
+    return this.validationsForm.get('cargo');
   }
   get nombre() {
-    return this.validations_form.get('nombre');
+    return this.validationsForm.get('nombre');
   }
   get telefono() {
-    return this.validations_form.get('telefono');
+    return this.validationsForm.get('telefono');
   }
   get direccion() {
-    return this.validations_form.get('direccion');
+    return this.validationsForm.get('direccion');
   }
   get correo() {
-    return this.validations_form.get('correo');
+    return this.validationsForm.get('correo');
   }
   get password() {
-    return this.validations_form.get('password');
+    return this.validationsForm.get('password');
   }
 
 

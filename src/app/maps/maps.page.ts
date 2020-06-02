@@ -4,6 +4,8 @@ import { MouseEvent } from '@agm/core';
 import { Parse } from 'parse';
 import { LoaderService } from 'src/app/services/loader.service';
 import { Location } from '@angular/common';
+import { ToastService } from 'src/app/services/toast.service';
+
 export interface Marker {
   lat?: number;
   lng?: number;
@@ -25,6 +27,7 @@ export class MapsPage implements OnInit {
     private geolocation: Geolocation,
     private loadingService: LoaderService,
     private location: Location,
+    private toast: ToastService,
   ) { }
 
   ngOnInit() {
@@ -38,9 +41,9 @@ export class MapsPage implements OnInit {
   }
 
   mapClicked($event: MouseEvent) {
-    console.log(MouseEvent);
-      this.lat = $event.coords.lat;
-      this.lng = $event.coords.lng;
+    console.log('MouseEvent', $event);
+    this.lat = $event.coords.lat;
+    this.lng = $event.coords.lng;
   }
 
   getMyLocation() {
@@ -51,7 +54,8 @@ export class MapsPage implements OnInit {
       this.lng = resp.coords.longitude;
 
      }).catch((error) => {
-       console.log('Error getting location', error);
+       this.toast.presentErrorToast('Error getting location');
+       console.error('Error getting location', error);
      });
   }
 
@@ -61,6 +65,7 @@ export class MapsPage implements OnInit {
     Parse.User.current().get('mi_tarjeta').set('GeoPoint', point);
     await Parse.User.current().get('mi_tarjeta').save();
     this.loadingService.dissminsLoading();
+    this.toast.presentToast('¡Ubicación Guardada!');
     this.location.back();
   }
 

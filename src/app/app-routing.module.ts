@@ -1,19 +1,28 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'home', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
-  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
-  { path: 'recover-password', loadChildren: './recover-password/recover-password.module#RecoverPasswordPageModule' },
-  // { path: 'maps', loadChildren: './component/maps/maps.module#MapsPageModule' },
-  // { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
-  // { path: 'mycard', loadChildren: './mycard/mycard.module#MycardPageModule' },
+  {
+    path: '',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./signup/signup.module').then(m => m.SignupPageModule)
+  },
+  {
+    path: 'recover-password',
+    loadChildren: () => import('./recover-password/recover-password.module').then(m => m.RecoverPasswordPageModule)
+  }
 ];
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+  ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

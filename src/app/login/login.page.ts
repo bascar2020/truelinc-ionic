@@ -28,13 +28,13 @@ export class LoginPage implements OnInit {
         Parse.User
             .logIn(this.username, this.password)
             .then((resp) => {
-                console.log('Logged in successfully', resp);
+                // console.log('Logged in successfully', resp);
                 // If you app has Tabs, set root to TabsPage
                 this.storage.set('currentUser', resp.toJSON())
                     .then(succses => this.router.navigateByUrl('/home'))
                     .catch(error => console.error(error.message));
             }, err => {
-                console.log('Error logging in', err);
+                console.error('Error logging in', err);
                 this.toast.presentErrorToast('Error logging in' + err.message);
             });
     }

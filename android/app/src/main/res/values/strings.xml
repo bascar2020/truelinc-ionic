@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">truelinc</string>
+    <string name="title_activity_main">truelinc</string>
+    <string name="package_name">co.com.hqr.truelinc</string>
+    <string name="custom_url_scheme">co.com.hqr.truelinc</string>
+</resources>

@@ -11,11 +11,11 @@ export class LoaderService {
     private loadingController: LoadingController
   ) { }
 
-  async presentLoading() {
+  async presentLoading(msg: string = 'Espere') {
       this.isLoading = true;
       return await this.loadingController.create({
         duration: 5000,
-        message : 'Espere',
+        message : msg,
         translucent: true,
       }).then(a => {
         a.present().then(() => {
@@ -25,6 +25,7 @@ export class LoaderService {
         });
       });
     }
+
 
 
   async dissminsLoading() {

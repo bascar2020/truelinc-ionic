@@ -1,0 +1,249 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center"><img class="img" src="assets/img/logoLargo.png"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form class="form" [formGroup]="editarForm" (ngSubmit)="onSubmit()">
+    <ion-grid>
+      <ion-row>
+          <ion-col size="6" style="text-align: -webkit-center;">
+            <ion-thumbnail id="img-user">
+    
+              <ion-button (click)="getLogo()">
+                <ion-avatar>
+                  <ion-img [src]="miTarjeta?.logo"></ion-img>
+                </ion-avatar>
+              </ion-button>
+            </ion-thumbnail>
+            <ion-label>Cambia tu Logo</ion-label>
+          </ion-col>
+          <ion-col size="6" style="text-align: -webkit-center">
+            <ion-thumbnail id="img-user">
+              <ion-button (click)="getFoto()">
+                <ion-avatar>  
+                  <ion-img [src]="miTarjeta?.foto"></ion-img>
+                </ion-avatar>
+              </ion-button>
+            </ion-thumbnail>
+            <ion-label>Cambia tu Fondo</ion-label>
+          </ion-col>
+        </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Empresa o Servicio</ion-label>
+            <ion-input formControlName="empresa" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input formControlName="nombre" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Cargo o Especialidad</ion-label>
+            <ion-input formControlName="cargo" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-label>Información adicional</ion-label>
+        <ion-item>
+          <ion-textarea formControlName="twit" placeholder="Escribe tu descripcion"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-text color="dark">
+        <h4>Palabras clave</h4>
+      </ion-text>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="ion-chip-group">
+          <ion-item class="input">
+            <ion-input formControlName="tagValue" (keyup)="onKey($event)" placeholder="tag1, tag2, tag3"></ion-input>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <div class="">
+        <ion-text color="dark" class="ion-text-center">
+          <h6>para ingresar palabras clave separalas por espacio , coma o enter.</h6>
+        </ion-text>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+      <ion-item>
+      <p>
+        <ion-chip outline color="primary" #chip *ngFor="let tag of tagArray; let i = index">
+          <ion-label>{{tag}}</ion-label>
+          <ion-icon name="close-circle" (click)="remove(i)"></ion-icon>
+        </ion-chip>
+      </p>
+    </ion-item>
+    </ion-col>
+    </ion-row>
+    
+         
+
+
+    <ion-row>
+      <ion-col size="2">
+        <ion-thumbnail id="img-icon">
+          <ion-img src="assets/img/phone.png"></ion-img>
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col>
+        <ion-item class="input">
+          <ion-label position="floating">Telefono</ion-label>
+          <ion-input placeholder="Tu telefono" formControlName="telefono" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="2">
+        <ion-thumbnail id="img-icon">
+          <ion-img src="assets/img/home.png"></ion-img>
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col>
+        <ion-item class="input">
+          <ion-label position="floating">Direccion</ion-label>
+          <ion-input placeholder="Tu direccion" formControlName="direccion" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="2">
+        <ion-thumbnail id="img-icon">
+          <ion-img src="assets/img/mail.png"></ion-img>
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col>
+        <ion-item class="input">
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input placeholder="Tu correo" formControlName="correo" type="email"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="2">
+        <ion-thumbnail id="img-icon">
+          <ion-img src="assets/img/face.png"></ion-img>
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col>
+        <ion-item class="input">
+          <ion-label position="floating">Facebook</ion-label>
+          <ion-input placeholder="https://wwww.facebook.com/yournickname" formControlName="facebook" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size=2>
+        <ion-thumbnail id="img-icon">
+          <ion-img src="assets/img/insta.png"></ion-img>
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col>
+        <ion-item class="input">
+          <ion-label position="floating">Instagram</ion-label>
+          <ion-input placeholder="https://www.instagram.com/yournickname" formControlName="instagram" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="2">
+        <ion-thumbnail id="img-icon">
+          <ion-img src="assets/img/web.png"></ion-img>
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col>
+        <ion-item class="input">
+          <ion-label position="floating">Pagina Web</ion-label>
+          <ion-input placeholder="https://www.tupaginaweb.com" formControlName="web" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="2">
+        <ion-thumbnail id="img-icon">
+          <ion-img src="assets/img/in.png"></ion-img>
+        </ion-thumbnail>
+      </ion-col>
+      <ion-col>
+        <ion-item class="input">
+          <ion-label position="floating">Linkedin</ion-label>
+          <ion-input placeholder="https://www.linkedin.com/in/xxxxxx-9999/" formControlName="linkedin" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-text color="dark" class="ion-text-center">
+      <h5>Click en el mapa y localiza tu posición</h5>
+    </ion-text>
+
+    <ion-row>
+      <ion-button (click)="goMap()">
+        <ion-img src="assets/img/maps.jpeg"></ion-img>
+      </ion-button>
+
+    </ion-row>
+
+    <ion-row class="privada ion-text-center">
+      <ion-col size="9">
+        <ion-text color="dark" class="ion-text-center">
+          <h4>Deseas que tu tarjeta TRUELINK sea privada</h4>
+        </ion-text>
+      </ion-col>
+      <ion-col size="3">
+        <ion-toggle formControlName="privada"></ion-toggle>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-row class="privacidad">
+      <div class="">
+        <ion-text color="dark" class="ion-text-center">
+          <h6>La privacidad de la tarjeta genera un costo adicional</h6>
+        </ion-text>
+      </div>
+    </ion-row> -->
+
+    <ion-row>
+      <ion-button type='submit' [disabled]="!editarForm.valid" class="btn-item" expand="full">
+        <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+        Guardar Cambios
+      </ion-button>
+    </ion-row>
+    <ion-row>
+        <ion-button class="btn-item" color="danger" (click)="logOut()" expand="full">
+          <ion-icon slot="start" name="power"></ion-icon>
+          Cerrar Sesion
+        </ion-button>
+    </ion-row>
+  
+  </ion-grid>
+  </form>
+</ion-content>
+
+

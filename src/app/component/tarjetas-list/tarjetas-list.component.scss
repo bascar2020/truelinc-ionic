@@ -1,11 +1,11 @@
-#img-user{
+#img-user {
 
     width: 80px;
     height: 80px;
     --border-radius: 50%;
 }
 
-.tarjeta{
+.tarjeta {
     position: absolute;
     height: 400%;
     width: 200%;
@@ -15,7 +15,7 @@
 
 
 
-ion-icon{
+ion-icon {
 
     color: rgb(216, 194, 0);
 }
@@ -41,23 +41,21 @@ ion-icon{
 
 
 
-.list-md  {
+.list-md {
     margin-right: -20px;
     margin-left: -20px;
-    background: var(--ion-item-background,var(--ion-background-color,transparent)); 
+    background: var(--ion-item-background, var(--ion-background-color, transparent));
 }
+
 .list-ios {
     margin: -20px;
-    background: var(--ion-item-background,var(--ion-background-color,transparent)); 
+    background: var(--ion-item-background, var(--ion-background-color, transparent));
 }
 
 
-ion-item{
-
-    --background: rgba(255, 255, 255, 0.92);
-
-
-}
+// ion-item {
+//     --background: rgba(255, 255, 255, 0.92);
+// }
 
 .sc-ion-card-ios-s ion-list {
     margin: 0;
@@ -71,7 +69,7 @@ ion-item{
     margin: 8px;
 }
 
-h4{
+h4 {
     font-size: 16px;
     margin-top: 3px;
     margin-bottom: 3px;
@@ -80,7 +78,7 @@ h4{
     padding-top: 4px;
 }
 
-h5{
+h5 {
     font-size: 14px;
     margin-top: 3px;
     margin-bottom: 3px;
@@ -89,14 +87,14 @@ h5{
     padding-top: 2px;
 
 }
-h6{
+
+h6 {
     font-size: 12px;
     margin-top: 3px;
     margin-bottom: 3px;
-    padding-bottom:3px;
+    padding-bottom: 3px;
     text-transform: capitalize;
     color: #5d5d5d;
     padding-top: 2px;
 
 }
-

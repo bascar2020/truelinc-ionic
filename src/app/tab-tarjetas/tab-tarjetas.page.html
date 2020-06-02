@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+          <ion-title class="ion-text-center"><img class="img" src="assets/img/logoLargo.png"></ion-title>
+      <app-search (searchCompleted)="filteredTarjetas($event)" [items]="copyOfMisTarjetas"></app-search>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding"  [fullscreen]="true">
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+              <ion-refresher-content></ion-refresher-content>
+            </ion-refresher>
+  <app-tarjetas-list class="tarjeta"
+      [items]="misTarjetas"
+      [navigateTo]="generateUrl">
+  </app-tarjetas-list>
+</ion-content>

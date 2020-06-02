@@ -36,8 +36,8 @@ export class RecoverPasswordPage implements OnInit {
         (resp) => {
           console.log('Password reset request was sent successfully');
         })
-        .catch(function(error) {
-          console.log('The login failed with error: ' + error.code + ' ' + error.message);
+        .catch((error) => {
+          console.error('The login failed with error: ' + error.code + ' ' + error.message);
           msg = error.message;
         });
       };

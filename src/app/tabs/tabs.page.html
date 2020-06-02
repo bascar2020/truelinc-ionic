@@ -1,0 +1,25 @@
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tarjetas">
+      <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-label>Tarjetas guardadas</ion-label>
+    </ion-tab-button>
+    
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      <ion-label>Buscar</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="scanCode()">
+      <ion-icon name="barcode"></ion-icon>
+      <ion-label>Scanear</ion-label>
+    </ion-tab-button>
+    
+    <ion-tab-button tab="edit">
+      <ion-icon name="create"></ion-icon>
+      <ion-label>Tu tarjeta</ion-label>
+    </ion-tab-button>
+</ion-tab-bar>
+
+</ion-tabs>
