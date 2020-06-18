@@ -115,7 +115,8 @@ export class TabEditPage implements OnInit {
     this.tagArray.splice(id, 1);
   }
   onKey(event: any) {
-    if (event.keyCode === 13 || event.keyCode === 188 || event.keyCode === 32) {
+    const lastChart = event.target.value.slice(-1);
+    if (event.keyCode === 13 || event.keyCode === 188 || event.keyCode === 32 ||  lastChart === ',' ||  lastChart === '.'||  lastChart === ' ') {
       const newTag: string = event.target.value.trim().replace(/,/g, '');
 
       if (this.tagArray.indexOf(newTag) === -1) {
