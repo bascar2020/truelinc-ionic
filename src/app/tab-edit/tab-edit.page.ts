@@ -134,7 +134,7 @@ export class TabEditPage implements OnInit {
     Parse.User.current().get('mi_tarjeta').set('Nombre', this.editarForm.value.nombre);
     Parse.User.current().get('mi_tarjeta').set('Privada', this.editarForm.value.privada);
     Parse.User.current().get('mi_tarjeta').set('Direccion', this.editarForm.value.direccion);
-    Parse.User.current().get('mi_tarjeta').set('Telefono', this.editarForm.value.telefono);
+    Parse.User.current().get('mi_tarjeta').set('Telefono', '' + this.editarForm.value.telefono);
     Parse.User.current().get('mi_tarjeta').set('Email', this.editarForm.value.correo);
     Parse.User.current().get('mi_tarjeta').set('Cargo', this.editarForm.value.cargo);
     Parse.User.current().get('mi_tarjeta').set('Twit', this.editarForm.value.twit);

@@ -30,11 +30,12 @@ export class SignupPage implements OnInit {
   }
 
   ngOnInit() {
+    const regexPassword = /^(?=(?:.*[A-Z]){1,})(?=(?:.*[a-z]){1,})(?=(?:.*\d){1,})(?=(?:.*[!@#$%^&*()\-_=+{};:,<.>]){1,})(?!.*(.)\1{2})([A-Za-z0-9!@#$%^&*()\-_=+{};:,<.>]{8,25})$/gm;
     this.createCard = false;
     this.validationsForm = this.formBuilder.group({
       nombre: ['', [ Validators.required, Validators.minLength(2)]],
       correo: ['', [ Validators.required, Validators.email]],
-      password: ['', [ Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&.,|¿]).{8,20}$')]],
+      password: ['', [ Validators.required, Validators.pattern(regexPassword)]],
       empresa : ['', []],
       cargo: ['', []],
       telefono: ['', []],
